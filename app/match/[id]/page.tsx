@@ -9,7 +9,8 @@ import { LiveBadge, UpcomingBadge } from "@/components/LiveBadge";
 import { MatchCard } from "@/components/MatchCard";
 import { EmptyState } from "@/components/EmptyState";
 import { MatchViewer } from "./MatchViewer";
-import { Calendar, Share2, ChevronLeft, Users, Activity } from "lucide-react";
+import { ShareButton } from "./ShareButton";
+import { Calendar, ChevronLeft, Users, Activity } from "lucide-react";
 
 export const revalidate = 30;
 
@@ -181,10 +182,7 @@ export default async function MatchPage({ params, searchParams }: Props) {
                   {formatMatchDate(match.date)} · {formatMatchTime(match.date)}
                 </span>
               </div>
-              <button className="flex items-center gap-1.5 rounded-lg bg-white/5 px-3 py-1.5 text-xs text-white/50 transition hover:bg-white/10 hover:text-white">
-                <Share2 className="h-3.5 w-3.5" />
-                Share
-              </button>
+              <ShareButton title={match.title} />
             </div>
           </div>
 
