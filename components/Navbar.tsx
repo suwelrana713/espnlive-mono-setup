@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { href: '/sports', label: 'Sports' },
   { href: '/schedule', label: 'Schedule' },
   { href: '/search', label: 'Search' },
+  { href: '/about', label: 'About' },
 ]
 
 export function Navbar() {
@@ -27,8 +28,8 @@ export function Navbar() {
               <Tv2 className="h-4 w-4 text-white" />
             </div>
             <div className="leading-none">
-              <span className="block text-sm font-black uppercase tracking-widest text-white">ES</span>
-              <span className="block text-[9px] font-semibold uppercase tracking-[0.2em] text-red-500">Soccer Sports</span>
+              <span className="block text-sm font-black uppercase tracking-widest text-white">ESPN</span>
+              <span className="block text-[9px] font-semibold uppercase tracking-[0.2em] text-red-500">Live</span>
             </div>
           </Link>
 

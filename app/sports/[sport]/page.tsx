@@ -13,14 +13,31 @@ interface Props {
   params: Promise<{ sport: string }>;
 }
 
+const BASE_URL = 'https://espnlive.online'
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { sport } = await params;
-  const name = sport
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+  const name = sport.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const sportUrl = `${BASE_URL}/sports/${sport}`;
+  const title = `Watch Live ${name} Streams Online Free`;
+  const description = `Watch live ${name.toLowerCase()} matches and streams online free in HD. Live scores, upcoming fixtures, and multiple stream sources.`;
   return {
-    title: name,
-    description: `Watch live ${name} matches and streams online.`,
+    title,
+    description,
+    alternates: { canonical: sportUrl },
+    openGraph: {
+      type: 'website',
+      url: sportUrl,
+      title,
+      description,
+      siteName: 'ESPN Live',
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: `Live ${name} Streams` }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
   };
 }
 

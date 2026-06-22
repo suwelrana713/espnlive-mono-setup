@@ -18,13 +18,43 @@ interface Props {
   searchParams: Promise<{ cat?: string }>;
 }
 
+const BASE_URL = 'https://espnlive.online'
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const match = await getMatchById(id).catch(() => null);
   if (!match) return { title: "Match Not Found" };
+
+  const homeTeam = match.teams?.home.name;
+  const awayTeam = match.teams?.away.name;
+  const title = homeTeam && awayTeam
+    ? `${homeTeam} vs ${awayTeam} Live Stream`
+    : `${match.title} Live Stream`;
+  const sport = match.category.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+  const dateStr = new Date(match.date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  const description = homeTeam && awayTeam
+    ? `Watch ${homeTeam} vs ${awayTeam} live stream free online in HD. ${sport} match on ${dateStr}. Multiple stream sources available.`
+    : `Watch ${match.title} live stream free online in HD. ${sport} on ${dateStr}.`;
+
+  const matchUrl = `${BASE_URL}/match/${id}`;
+
   return {
-    title: match.title,
-    description: `Watch ${match.title} live stream online`,
+    title,
+    description,
+    alternates: { canonical: matchUrl },
+    openGraph: {
+      type: 'website',
+      url: matchUrl,
+      title,
+      description,
+      siteName: 'ESPN Live',
+      images: match.poster ? [{ url: match.poster, alt: title }] : [{ url: '/og-image.png', width: 1200, height: 630, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
   };
 }
 
@@ -51,8 +81,35 @@ export default async function MatchPage({ params, searchParams }: Props) {
   const related = await getMatchesBySport(match.category).catch(() => []);
   const relatedMatches = related.filter((m) => m.id !== match.id).slice(0, 4);
 
+  const matchUrl = `${BASE_URL}/match/${id}`;
+  const sportsEventJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SportsEvent',
+    name: match.title,
+    startDate: new Date(match.date).toISOString(),
+    sport: match.category.replace(/-/g, ' '),
+    url: matchUrl,
+    ...(match.teams && {
+      homeTeam: { '@type': 'SportsTeam', name: match.teams.home.name },
+      awayTeam: { '@type': 'SportsTeam', name: match.teams.away.name },
+    }),
+    location: {
+      '@type': 'VirtualLocation',
+      url: matchUrl,
+    },
+    organizer: {
+      '@type': 'Organization',
+      name: 'ESPN Live',
+      url: BASE_URL,
+    },
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(sportsEventJsonLd) }}
+      />
       <Link
         href={cat ? `/sports/${cat}` : "/"}
         className="mb-6 inline-flex items-center gap-2 text-sm text-white/40 transition hover:text-white"
