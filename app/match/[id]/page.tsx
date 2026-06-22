@@ -1,56 +1,60 @@
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import Image from 'next/image'
-import Link from 'next/link'
-import { getMatchById, getStreams, getMatchesBySport } from '@/lib/api'
-import { getMatchStatus, formatMatchDate, formatMatchTime } from '@/lib/types'
-import { getBadgeUrl } from '@/lib/utils'
-import { LiveBadge, UpcomingBadge } from '@/components/LiveBadge'
-import { MatchCard } from '@/components/MatchCard'
-import { EmptyState } from '@/components/EmptyState'
-import { MatchViewer } from './MatchViewer'
-import { Calendar, Share2, ChevronLeft, Users, Activity } from 'lucide-react'
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { getMatchById, getStreams, getMatchesBySport } from "@/lib/api";
+import { getMatchStatus, formatMatchDate, formatMatchTime } from "@/lib/types";
+import { getBadgeUrl } from "@/lib/utils";
+import { LiveBadge, UpcomingBadge } from "@/components/LiveBadge";
+import { MatchCard } from "@/components/MatchCard";
+import { EmptyState } from "@/components/EmptyState";
+import { MatchViewer } from "./MatchViewer";
+import { Calendar, Share2, ChevronLeft, Users, Activity } from "lucide-react";
 
-export const revalidate = 30
+export const revalidate = 30;
 
 interface Props {
-  params: Promise<{ id: string }>
-  searchParams: Promise<{ cat?: string }>
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ cat?: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params
-  const match = await getMatchById(id).catch(() => null)
-  if (!match) return { title: 'Match Not Found' }
+  const { id } = await params;
+  const match = await getMatchById(id).catch(() => null);
+  if (!match) return { title: "Match Not Found" };
   return {
     title: match.title,
     description: `Watch ${match.title} live stream online`,
-  }
+  };
 }
 
 export default async function MatchPage({ params, searchParams }: Props) {
-  const { id } = await params
-  const { cat } = await searchParams
+  const { id } = await params;
+  const { cat } = await searchParams;
 
-  const match = await getMatchById(id).catch(() => null)
-  if (!match) notFound()
+  const match = await getMatchById(id).catch(() => null);
+  if (!match) notFound();
 
-  const status = getMatchStatus(match.date)
+  const status = getMatchStatus(match.date);
 
   const streamsResults = await Promise.allSettled(
-    match.sources.map(s => getStreams(s.source, s.id))
-  )
+    match.sources.map((s) => getStreams(s.source, s.id)),
+  );
   const streams = streamsResults
-    .filter(r => r.status === 'fulfilled')
-    .flatMap(r => (r as PromiseFulfilledResult<Awaited<ReturnType<typeof getStreams>>>).value)
+    .filter((r) => r.status === "fulfilled")
+    .flatMap(
+      (r) =>
+        (r as PromiseFulfilledResult<Awaited<ReturnType<typeof getStreams>>>)
+          .value,
+    );
 
-  const related = await getMatchesBySport(match.category).catch(() => [])
-  const relatedMatches = related.filter(m => m.id !== match.id).slice(0, 4)
+  const related = await getMatchesBySport(match.category).catch(() => []);
+  const relatedMatches = related.filter((m) => m.id !== match.id).slice(0, 4);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
       <Link
-        href={cat ? `/sports/${cat}` : '/'}
+        href={cat ? `/sports/${cat}` : "/"}
         className="mb-6 inline-flex items-center gap-2 text-sm text-white/40 transition hover:text-white"
       >
         <ChevronLeft className="h-4 w-4" />
@@ -61,17 +65,28 @@ export default async function MatchPage({ params, searchParams }: Props) {
         <div className="lg:col-span-2 space-y-6">
           <div className="rounded-2xl border border-white/5 bg-white/2 p-6">
             <div className="mb-4 flex items-center gap-3">
-              {status === 'live' ? <LiveBadge /> : status === 'upcoming' ? <UpcomingBadge /> : (
-                <span className="text-xs text-white/30 uppercase">Finished</span>
+              {status === "live" ? (
+                <LiveBadge />
+              ) : status === "upcoming" ? (
+                <UpcomingBadge />
+              ) : (
+                <span className="text-xs text-white/30 uppercase">
+                  Finished
+                </span>
               )}
-              <span className="text-sm capitalize text-white/40">{match.category.replace('-', ' ')}</span>
+              <span className="text-sm capitalize text-white/40">
+                {match.category.replace("-", " ")}
+              </span>
             </div>
 
             {match.teams ? (
               <div className="flex items-center justify-center gap-6 sm:gap-12">
-                <TeamDisplay name={match.teams.home.name} badge={match.teams.home.badge} />
+                <TeamDisplay
+                  name={match.teams.home.name}
+                  badge={match.teams.home.badge}
+                />
                 <div className="flex flex-col items-center gap-1 rounded-2xl bg-white/5 px-6 py-4">
-                  {status === 'live' ? (
+                  {status === "live" ? (
                     <div className="flex items-center gap-2 text-white/60 text-sm font-bold">
                       <Activity className="h-4 w-4 text-red-400" />
                       LIVE
@@ -83,11 +98,16 @@ export default async function MatchPage({ params, searchParams }: Props) {
                         <Calendar className="h-3 w-3" />
                         {formatMatchDate(match.date)}
                       </div>
-                      <span className="text-sm font-semibold text-white/60">{formatMatchTime(match.date)}</span>
+                      <span className="text-sm font-semibold text-white/60">
+                        {formatMatchTime(match.date)}
+                      </span>
                     </>
                   )}
                 </div>
-                <TeamDisplay name={match.teams.away.name} badge={match.teams.away.badge} />
+                <TeamDisplay
+                  name={match.teams.away.name}
+                  badge={match.teams.away.badge}
+                />
               </div>
             ) : (
               <h1 className="text-2xl font-black text-white">{match.title}</h1>
@@ -117,7 +137,11 @@ export default async function MatchPage({ params, searchParams }: Props) {
             <div className="rounded-2xl border border-white/5 bg-white/2 p-8">
               <EmptyState
                 title="No streams available"
-                description={status === 'upcoming' ? 'Streams will appear when the match starts.' : 'No streams found for this match.'}
+                description={
+                  status === "upcoming"
+                    ? "Streams will appear when the match starts."
+                    : "No streams found for this match."
+                }
               />
             </div>
           )}
@@ -125,19 +149,27 @@ export default async function MatchPage({ params, searchParams }: Props) {
 
         <div className="space-y-6">
           <div className="rounded-2xl border border-white/5 bg-white/2 p-5">
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">Match Info</h3>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">
+              Match Info
+            </h3>
             <dl className="space-y-3 text-sm">
               <div className="flex justify-between">
                 <dt className="text-white/40">Sport</dt>
-                <dd className="font-medium capitalize text-white">{match.category.replace('-', ' ')}</dd>
+                <dd className="font-medium capitalize text-white">
+                  {match.category.replace("-", " ")}
+                </dd>
               </div>
               <div className="flex justify-between">
                 <dt className="text-white/40">Date</dt>
-                <dd className="font-medium text-white">{formatMatchDate(match.date)}</dd>
+                <dd className="font-medium text-white">
+                  {formatMatchDate(match.date)}
+                </dd>
               </div>
               <div className="flex justify-between">
                 <dt className="text-white/40">Time</dt>
-                <dd className="font-medium text-white">{formatMatchTime(match.date)}</dd>
+                <dd className="font-medium text-white">
+                  {formatMatchTime(match.date)}
+                </dd>
               </div>
               <div className="flex justify-between">
                 <dt className="text-white/40">Streams</dt>
@@ -145,29 +177,35 @@ export default async function MatchPage({ params, searchParams }: Props) {
               </div>
               <div className="flex justify-between">
                 <dt className="text-white/40">Sources</dt>
-                <dd className="font-medium text-white">{match.sources.length}</dd>
+                <dd className="font-medium text-white">
+                  {match.sources.length}
+                </dd>
               </div>
             </dl>
           </div>
 
           {relatedMatches.length > 0 && (
             <div>
-              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">Related Matches</h3>
+              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">
+                Related Matches
+              </h3>
               <div className="space-y-3">
-                {relatedMatches.map((m, i) => <MatchCard key={m.id} match={m} index={i} compact />)}
+                {relatedMatches.map((m, i) => (
+                  <MatchCard key={m.id} match={m} index={i} compact />
+                ))}
               </div>
             </div>
           )}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function TeamDisplay({ name, badge }: { name: string; badge: string }) {
   return (
     <div className="flex flex-col items-center gap-3">
-      <div className="relative h-16 w-16 sm:h-24 sm:w-24">
+      {/* <div className="relative h-16 w-16 sm:h-24 sm:w-24">
         <Image
           src={getBadgeUrl(badge)}
           alt={name}
@@ -175,8 +213,10 @@ function TeamDisplay({ name, badge }: { name: string; badge: string }) {
           className="object-contain"
           unoptimized
         />
-      </div>
-      <span className="text-center text-base font-bold text-white sm:text-xl">{name}</span>
+      </div> */}
+      <span className="text-center text-base font-bold text-white sm:text-xl">
+        {name}
+      </span>
     </div>
-  )
+  );
 }
