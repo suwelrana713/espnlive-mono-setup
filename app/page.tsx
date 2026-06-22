@@ -22,11 +22,11 @@ async function HeroSection() {
   ]);
   const liveMatches = live.status === "fulfilled" ? live.value : [];
   const popularMatches = popular.status === "fulfilled" ? popular.value : [];
-  const featured = (liveMatches.length ? liveMatches : popularMatches)
-    .slice()
-    .sort((a, b) =>
-      a.category === "football" ? -1 : b.category === "football" ? 1 : 0,
-    );
+  const featured = [...(liveMatches || []), ...(popularMatches || [])];
+  // .slice()
+  // .sort((a, b) =>
+  //   a.category === "football" ? -1 : b.category === "football" ? 1 : 0,
+  // );
   if (!featured.length) return null;
   return <HeroBanner match={featured.slice(0, 8)} />;
 }

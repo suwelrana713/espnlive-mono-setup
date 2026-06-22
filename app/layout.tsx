@@ -45,7 +45,7 @@ export const metadata: Metadata = {
       'Watch live football, basketball, tennis, cricket and more sports free in HD. Live scores, streams and fixtures.',
     images: [
       {
-        url: '/og-image.png',
+        url: '/logo.png',
         width: 1200,
         height: 630,
         alt: 'ESPN Live — Free Live Sports Streaming',
@@ -71,6 +71,13 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: BASE_URL,
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.png', type: 'image/png' },
+    ],
+    apple: '/favicon.png',
+    shortcut: '/favicon.png',
   },
   verification: {
     google: '',
