@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Tv2, Shield, Zap, Globe, Users } from 'lucide-react'
+import { ResponsiveAd } from '@/components/ads/AdBanner'
 
 export const metadata: Metadata = {
   title: 'About ESPN Live — Free Sports Streaming Platform',
@@ -120,6 +121,10 @@ export default function AboutPage() {
             Get in touch →
           </Link>
         </p>
+      </div>
+
+      <div className="mt-10">
+        <ResponsiveAd mobile="320x50" desktop="728x90" />
       </div>
     </div>
   )

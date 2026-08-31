@@ -12,6 +12,8 @@ import { SportCard } from "@/components/SportCard";
 import { HeroSkeleton, GridSkeleton } from "@/components/LoadingSkeleton";
 import { EmptyState } from "@/components/EmptyState";
 import { Zap, TrendingUp, Clock, Calendar } from "lucide-react";
+import { ResponsiveAd, AdBanner } from "@/components/ads/AdBanner";
+import { AdNativeBanner } from "@/components/ads/AdNativeBanner";
 
 export const revalidate = 60;
 
@@ -150,7 +152,11 @@ export default function HomePage() {
         <HeroSection />
       </Suspense>
 
-      <div className="mt-16 space-y-16">
+      <div className="mt-8">
+        <ResponsiveAd mobile="320x50" desktop="728x90" />
+      </div>
+
+      <div className="mt-12 space-y-16">
         <section>
           <SectionHeader
             icon={<Zap className="h-5 w-5" />}
@@ -161,6 +167,8 @@ export default function HomePage() {
             <LiveSection />
           </Suspense>
         </section>
+
+        <AdNativeBanner />
 
         <section>
           <SectionHeader
@@ -173,6 +181,10 @@ export default function HomePage() {
           </Suspense>
         </section>
 
+        <div className="flex justify-center">
+          <AdBanner size="300x250" />
+        </div>
+
         <section>
           <SectionHeader
             icon={<Calendar className="h-5 w-5" />}
@@ -184,6 +196,10 @@ export default function HomePage() {
           </Suspense>
         </section>
 
+        <div className="hidden md:flex justify-center">
+          <AdBanner size="728x90" />
+        </div>
+
         <section>
           <SectionHeader
             icon={<Clock className="h-5 w-5" />}
@@ -194,6 +210,8 @@ export default function HomePage() {
             <SportsSection />
           </Suspense>
         </section>
+
+        <AdNativeBanner />
       </div>
     </div>
   );

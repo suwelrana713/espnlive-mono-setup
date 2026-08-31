@@ -11,6 +11,8 @@ import { EmptyState } from "@/components/EmptyState";
 import { MatchViewer } from "./MatchViewer";
 import { ShareButton } from "./ShareButton";
 import { Calendar, ChevronLeft, Users, Activity } from "lucide-react";
+import { ResponsiveAd, AdBanner } from "@/components/ads/AdBanner";
+import { AdNativeBanner } from "@/components/ads/AdNativeBanner";
 
 export const revalidate = 30;
 
@@ -119,6 +121,10 @@ export default async function MatchPage({ params, searchParams }: Props) {
         Back
       </Link>
 
+      <div className="mb-6">
+        <ResponsiveAd mobile="320x50" desktop="728x90" />
+      </div>
+
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-6">
           <div className="rounded-2xl border border-white/5 bg-white/2 p-6">
@@ -200,9 +206,19 @@ export default async function MatchPage({ params, searchParams }: Props) {
               />
             </div>
           )}
+
+          <AdNativeBanner />
+
+          <div className="hidden md:flex justify-center">
+            <AdBanner size="728x90" />
+          </div>
         </div>
 
         <div className="space-y-6">
+          <div className="flex justify-center">
+            <AdBanner size="300x250" />
+          </div>
+
           <div className="rounded-2xl border border-white/5 bg-white/2 p-5">
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white/40">
               Match Info
@@ -251,6 +267,10 @@ export default async function MatchPage({ params, searchParams }: Props) {
               </div>
             </div>
           )}
+
+          <div className="hidden xl:flex justify-center">
+            <AdBanner size="160x600" />
+          </div>
         </div>
       </div>
     </div>

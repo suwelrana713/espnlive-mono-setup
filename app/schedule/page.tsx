@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { ScheduleClient } from './ScheduleClient'
 import { getMatchesBySport } from '@/lib/api'
 import type { Match } from '@/lib/types'
+import { ResponsiveAd } from '@/components/ads/AdBanner'
+import { AdNativeBanner } from '@/components/ads/AdNativeBanner'
 
 export const metadata: Metadata = {
   title: 'Schedule',
@@ -21,5 +23,15 @@ export default async function SchedulePage() {
   const deduped = Array.from(new Map(allMatches.map(m => [m.id, m])).values())
   const sorted = deduped.sort((a, b) => a.date - b.date)
 
-  return <ScheduleClient matches={sorted} />
+  return (
+    <>
+      <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6">
+        <ResponsiveAd mobile="320x50" desktop="728x90" />
+      </div>
+      <ScheduleClient matches={sorted} />
+      <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6">
+        <AdNativeBanner />
+      </div>
+    </>
+  )
 }

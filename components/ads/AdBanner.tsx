@@ -1,0 +1,82 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
+import { ADS, type BannerSize } from './adConfig'
+import { cn } from '@/lib/utils'
+
+interface AdBannerProps {
+  size: BannerSize
+  className?: string
+}
+
+/**
+ * Isolated Adsterra banner. atOptions global collides across banners, so each
+ * one renders inside its own srcdoc iframe with fresh window scope.
+ */
+export function AdBanner({ size, className }: AdBannerProps) {
+  const ref = useRef<HTMLIFrameElement>(null)
+  const cfg = ADS.banners[size]
+
+  useEffect(() => {
+    const iframe = ref.current
+    if (!iframe) return
+    const html = `<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:transparent;overflow:hidden}</style></head><body><script type="text/javascript">atOptions={'key':'${cfg.key}','format':'iframe','height':${cfg.h},'width':${cfg.w},'params':{}};</script><script async src="${ADS.invokeBase}/${cfg.key}/invoke.js"></script></body></html>`
+    iframe.srcdoc = html
+  }, [cfg.key, cfg.w, cfg.h])
+
+  return (
+    <div
+      aria-label="Advertisement"
+      role="complementary"
+      className={cn('flex justify-center', className)}
+    >
+      <iframe
+        ref={ref}
+        title="Advertisement"
+        width={cfg.w}
+        height={cfg.h}
+        scrolling="no"
+        frameBorder={0}
+        sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+        referrerPolicy="no-referrer-when-downgrade"
+        loading="lazy"
+        style={{ width: cfg.w, height: cfg.h, border: 0, display: 'block', maxWidth: '100%' }}
+      />
+    </div>
+  )
+}
+
+interface ResponsiveAdProps {
+  mobile: BannerSize
+  desktop: BannerSize
+  breakpoint?: 'sm' | 'md' | 'lg'
+  className?: string
+}
+
+/**
+ * Show `mobile` size below breakpoint, `desktop` at/above.
+ * Renders both wrapped in Tailwind visibility classes — Adsterra loads only
+ * the visible one because the hidden iframe stays display:none.
+ */
+export function ResponsiveAd({ mobile, desktop, breakpoint = 'md', className }: ResponsiveAdProps) {
+  const showMobile = {
+    sm: 'block sm:hidden',
+    md: 'block md:hidden',
+    lg: 'block lg:hidden',
+  }[breakpoint]
+  const showDesktop = {
+    sm: 'hidden sm:block',
+    md: 'hidden md:block',
+    lg: 'hidden lg:block',
+  }[breakpoint]
+  return (
+    <>
+      <div className={cn(showMobile, className)}>
+        <AdBanner size={mobile} />
+      </div>
+      <div className={cn(showDesktop, className)}>
+        <AdBanner size={desktop} />
+      </div>
+    </>
+  )
+}

@@ -5,6 +5,8 @@ import { SportCard } from '@/components/SportCard'
 import { GridSkeleton } from '@/components/LoadingSkeleton'
 import { EmptyState } from '@/components/EmptyState'
 import { Layers } from 'lucide-react'
+import { ResponsiveAd } from '@/components/ads/AdBanner'
+import { AdNativeBanner } from '@/components/ads/AdNativeBanner'
 
 export const metadata: Metadata = {
   title: 'Sports',
@@ -48,9 +50,17 @@ export default function SportsPage() {
         </div>
       </div>
 
+      <div className="mb-8">
+        <ResponsiveAd mobile="320x50" desktop="728x90" />
+      </div>
+
       <Suspense fallback={<GridSkeleton count={15} />}>
         <SportsGrid />
       </Suspense>
+
+      <div className="mt-12">
+        <AdNativeBanner />
+      </div>
     </div>
   )
 }

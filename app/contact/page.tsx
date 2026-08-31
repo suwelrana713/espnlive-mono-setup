@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Mail, MessageSquare } from 'lucide-react'
+import { ResponsiveAd } from '@/components/ads/AdBanner'
 
 export const metadata: Metadata = {
   title: 'Contact ESPN Live — Get in Touch',
@@ -29,6 +30,10 @@ export default function ContactPage() {
         <p className="mt-3 text-white/50">
           We aim to respond within 24 hours on business days.
         </p>
+      </div>
+
+      <div className="mb-8">
+        <ResponsiveAd mobile="320x50" desktop="728x90" />
       </div>
 
       <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-3">

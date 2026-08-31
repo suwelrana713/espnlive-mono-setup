@@ -8,6 +8,8 @@ import { GridSkeleton } from "@/components/LoadingSkeleton";
 import { EmptyState } from "@/components/EmptyState";
 import { Zap, Calendar } from "lucide-react";
 import Link from "next/link";
+import { ResponsiveAd } from "@/components/ads/AdBanner";
+import { AdNativeBanner } from "@/components/ads/AdNativeBanner";
 
 interface Props {
   params: Promise<{ sport: string }>;
@@ -138,16 +140,24 @@ export default async function SportPage({ params }: Props) {
         <span className="text-white">{name}</span>
       </div>
 
-      <div className="mb-10">
+      <div className="mb-8">
         <h1 className="text-3xl font-black text-white">{name}</h1>
         <p className="mt-1 text-sm text-white/40">
           Live & upcoming {name.toLowerCase()} matches
         </p>
       </div>
 
+      <div className="mb-8">
+        <ResponsiveAd mobile="320x50" desktop="728x90" />
+      </div>
+
       <Suspense fallback={<GridSkeleton />}>
         <MatchesList sport={sport} />
       </Suspense>
+
+      <div className="mt-12">
+        <AdNativeBanner />
+      </div>
     </div>
   );
 }
