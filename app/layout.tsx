@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 // import { AdSocialBar } from "@/components/ads/AdSocialBar";
 // import { AdPopunder } from "@/components/ads/AdPopunder";
+import { SideRailAds } from "@/components/ads/SideRailAds";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 
@@ -156,6 +157,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <body className="flex min-h-dvh flex-col bg-[#080c14] text-white antialiased">
         <Providers>
           <Navbar />
+          <SideRailAds />
           <main className="flex-1">{children}</main>
           <Footer />
         </Providers>
