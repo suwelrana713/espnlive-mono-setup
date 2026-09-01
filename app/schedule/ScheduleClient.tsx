@@ -4,8 +4,8 @@ import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { Match } from '@/lib/types'
-import { MatchCard } from '@/components/MatchCard'
 import { EmptyState } from '@/components/EmptyState'
+import { MatchesLoadMore } from '@/components/MatchesLoadMore'
 import { cn } from '@/lib/utils'
 
 interface ScheduleClientProps {
@@ -140,9 +140,12 @@ export function ScheduleClient({ matches }: ScheduleClientProps) {
           key={selectedDate + sportFilter}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {dayMatches.map((m, i) => <MatchCard key={m.id} match={m} index={i} />)}
+          <MatchesLoadMore
+            key={selectedDate + sportFilter}
+            matches={dayMatches}
+            step={12}
+          />
         </motion.div>
       )}
     </div>

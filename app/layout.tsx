@@ -4,9 +4,8 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-// import { AdSocialBar } from "@/components/ads/AdSocialBar";
-// import { AdPopunder } from "@/components/ads/AdPopunder";
 import { SideRailAds } from "@/components/ads/SideRailAds";
+import { ClickGatedAds } from "@/components/ads/ClickGatedAds";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 
@@ -161,8 +160,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <main className="flex-1">{children}</main>
           <Footer />
         </Providers>
-        {/* <AdSocialBar />
-        <AdPopunder /> */}
+        <ClickGatedAds />
       </body>
     </html>
   );

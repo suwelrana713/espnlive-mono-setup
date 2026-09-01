@@ -222,20 +222,35 @@ Slug like `football`, `american-football`, `motor-sports`. Used for:
 
 | Format | Component | Placement |
 |---|---|---|
-| Popunder | `AdPopunder` | site-wide (layout body) |
-| Social Bar | `AdSocialBar` | site-wide (layout body) |
+| Popunder + Social Bar (click-gated) | `ClickGatedAds` | site-wide (layout body). Injects socialbar OR popunder script (random 50/50) on every **5th** user click, resets counter. First 4 clicks clean. Counter in `sessionStorage['espnlive_ads_click_count']`. Ignores clicks inside `[data-ad-slot]` and `iframe`. Replaces always-on `AdSocialBar` + `AdPopunder`. |
 | Native Banner | `AdNativeBanner` | home mid-feed + match page below player + sport listing bottom + schedule bottom |
 | 728x90 / 320x50 responsive | `<ResponsiveAd mobile="320x50" desktop="728x90"/>` | top of each content route |
+| 468x60 / 320x50 responsive | `<ResponsiveAd mobile="320x50" desktop="468x60"/>` | sport page section-break (between Live ↔ Upcoming, only when both exist) |
+| 728x90 / 320x50 in-feed | `<ResponsiveAd mobile="320x50" desktop="728x90"/>` inside `MatchesLoadMore` | Auto-injected inside long match grids: sport `/sports/[sport]` Upcoming + `/schedule` day list. Only when total list ≥ 50 items. Injects after every 10 rendered cards (`AD_THRESHOLD=50`, `AD_INTERVAL=10` in `components/MatchesLoadMore.tsx`). Skips ad at last visible slot (avoids ad above Load-more button). |
 | 300x250 | `<AdBanner size="300x250"/>` | match page sidebar top, home between sections |
 | 160x600 | `<AdBanner size="160x600"/>` | match page sidebar bottom (xl+), side rails (2xl+) |
-| 468x60 | `<AdBanner size="468x60"/>` | reserved (currently unused) |
 | 160x300 | `<AdBanner size="160x300"/>` | reserved for narrow sidebars |
+
+**Legacy components (unused, safe to delete):** `AdPopunder.tsx`, `AdSocialBar.tsx` — superseded by `ClickGatedAds`.
+
+**Per-page ad density (UX ceiling — do not exceed):**
+
+| Page | Units | Status |
+|---|---|---|
+| Home | 5 | full — no more |
+| Match | 5 | full — no more |
+| Sport page | 3 base (top + section-break + bottom native) + in-feed ad every 10 cards when Upcoming ≥ 50 | at ceiling |
+| Sports index | 2 | grid layout — do not break with inline ads |
+| Schedule | 2 base + in-feed ad every 10 cards when day list ≥ 50 | at ceiling |
+| Search | 1 | do not add — kills scan flow |
+| About / Contact | 1 | low intent — do not add |
 
 ### Technical rules
 
 - **atOptions collision:** every banner renders inside its own `srcdoc` iframe. Never inline `<script>` with `atOptions` — they stomp each other's config.
-- **Loading:** Popunder + SocialBar use `strategy="lazyOnload"` (don't hurt LCP). Banner iframes have `loading="lazy"`.
-- **Sandbox:** ad iframes get `allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox` (popups needed for revenue).
+- **Click gating:** Popunder + SocialBar are NOT site-wide always-on. `ClickGatedAds` injects them lazily on every 5th user click (random pick between the two). Never re-add `<AdPopunder/>` or `<AdSocialBar/>` to layout — would double-serve.
+- **Loading:** Banner iframes have `loading="lazy"`. Click-gated scripts inject only after threshold hit.
+- **Sandbox:** ad iframes get `allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox` (popups needed for revenue). Banner wrapper `<div>` carries `data-ad-slot="banner"` so `ClickGatedAds` ignores clicks on ad chrome.
 - **CSP:** if you re-add CSP header, must allowlist:
   ```
   script-src   *.profitableratecpmnetwork.com  *.highrevenueformat.com
@@ -378,7 +393,9 @@ Categorized shortlist from the last full audit. Fix status varies — check curr
 - Fall back gracefully with `.catch(() => [])` on API failures.
 
 **Don't**
-- Don't add more Adsterra units than listed.
+- Don't add more Adsterra units than listed in Section 9 density table.
+- Don't re-enable always-on `AdPopunder`/`AdSocialBar` — they are click-gated via `ClickGatedAds` now.
+- Don't drop the click threshold below 5 without user sign-off — UX priority.
 - Don't render `embedUrl` without sandbox.
 - Don't use `dangerouslySetInnerHTML` for scripts — use `next/script`.
 - Don't call `Date.now()` in `useState` initializers (hydration).

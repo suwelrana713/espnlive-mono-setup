@@ -10,6 +10,7 @@ import { Zap, Calendar } from "lucide-react";
 import Link from "next/link";
 import { ResponsiveAd } from "@/components/ads/AdBanner";
 import { AdNativeBanner } from "@/components/ads/AdNativeBanner";
+import { MatchesLoadMore } from "@/components/MatchesLoadMore";
 
 interface Props {
   params: Promise<{ sport: string }>;
@@ -80,6 +81,12 @@ async function MatchesList({ sport }: { sport: string }) {
         </section>
       )}
 
+      {live.length > 0 && upcoming.length > 0 && (
+        <div className="my-2">
+          <ResponsiveAd mobile="320x50" desktop="468x60" />
+        </div>
+      )}
+
       {upcoming.length > 0 && (
         <section>
           <div className="mb-5 flex items-center gap-2">
@@ -91,11 +98,7 @@ async function MatchesList({ sport }: { sport: string }) {
               </span>
             </h2>
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {upcoming.map((m, i) => (
-              <MatchCard key={m.id} match={m} index={i} />
-            ))}
-          </div>
+          <MatchesLoadMore matches={upcoming} step={12} />
         </section>
       )}
 

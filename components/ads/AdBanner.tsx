@@ -28,6 +28,7 @@ export function AdBanner({ size, className }: AdBannerProps) {
     <div
       aria-label="Advertisement"
       role="complementary"
+      data-ad-slot="banner"
       className={cn('flex justify-center', className)}
     >
       <iframe
