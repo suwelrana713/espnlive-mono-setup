@@ -1,26 +1,38 @@
-import type { Metadata } from 'next'
-import { Mail, MessageSquare } from 'lucide-react'
-import { ResponsiveAd } from '@/components/ads/AdBanner'
+import type { Metadata } from "next";
+import { Mail, MessageSquare } from "lucide-react";
+import { ResponsiveAd } from "@/components/ads/AdBanner";
 
 export const metadata: Metadata = {
-  title: 'Contact ESPN Live — Get in Touch',
+  title: "Contact ESPN Live — Get in Touch",
   description:
-    'Contact ESPN Live for support, DMCA notices, stream issues, or general inquiries. We respond within 24 hours.',
-  alternates: { canonical: 'https://espnlive.online/contact' },
+    "Contact ESPN Live for support, DMCA notices, stream issues, or general inquiries. We respond within 24 hours.",
+  alternates: { canonical: "https://espnlive.online/contact" },
   openGraph: {
-    type: 'website',
-    url: 'https://espnlive.online/contact',
-    title: 'Contact ESPN Live',
-    description: 'Get in touch with ESPN Live for support or inquiries.',
-    siteName: 'ESPN Live',
+    type: "website",
+    url: "https://espnlive.online/contact",
+    title: "Contact ESPN Live",
+    description: "Get in touch with ESPN Live for support or inquiries.",
+    siteName: "ESPN Live",
   },
-}
+};
 
 const contactReasons = [
-  { icon: MessageSquare, label: 'Stream not working', desc: 'Report a broken or missing stream link.' },
-  { icon: Mail, label: 'DMCA / Copyright', desc: 'Content removal requests handled within 24h.' },
-  { icon: MessageSquare, label: 'General inquiry', desc: 'Any other questions or feedback.' },
-]
+  {
+    icon: MessageSquare,
+    label: "Stream not working",
+    desc: "Report a broken or missing stream link.",
+  },
+  {
+    icon: Mail,
+    label: "DMCA / Copyright",
+    desc: "Content removal requests handled within 24h.",
+  },
+  {
+    icon: MessageSquare,
+    label: "General inquiry",
+    desc: "Any other questions or feedback.",
+  },
+];
 
 export default function ContactPage() {
   return (
@@ -38,7 +50,10 @@ export default function ContactPage() {
 
       <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {contactReasons.map(({ icon: Icon, label, desc }) => (
-          <div key={label} className="rounded-2xl border border-white/5 bg-white/2 p-4 text-center">
+          <div
+            key={label}
+            className="rounded-2xl border border-white/5 bg-white/2 p-4 text-center"
+          >
             <Icon className="mx-auto mb-2 h-5 w-5 text-red-400" />
             <p className="text-sm font-semibold text-white">{label}</p>
             <p className="mt-1 text-xs text-white/40">{desc}</p>
@@ -49,16 +64,27 @@ export default function ContactPage() {
       <div className="rounded-2xl border border-white/5 bg-white/2 p-6">
         <h2 className="mb-6 text-lg font-bold text-white">Send a Message</h2>
         <form
-          action="https://formsubmit.co/teamrootdevs@gmail.com"
+          action="https://formsubmit.co/subhoislam624@gmail.com"
           method="POST"
           className="space-y-4"
         >
-          <input type="hidden" name="_subject" value="ESPN Live — Contact Form" />
+          <input
+            type="hidden"
+            name="_subject"
+            value="ESPN Live — Contact Form"
+          />
           <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="https://espnlive.online/contact?sent=true" />
+          <input
+            type="hidden"
+            name="_next"
+            value="https://espnlive.online/contact?sent=true"
+          />
 
           <div>
-            <label htmlFor="name" className="mb-1.5 block text-xs font-medium text-white/60">
+            <label
+              htmlFor="name"
+              className="mb-1.5 block text-xs font-medium text-white/60"
+            >
               Name
             </label>
             <input
@@ -72,7 +98,10 @@ export default function ContactPage() {
           </div>
 
           <div>
-            <label htmlFor="email" className="mb-1.5 block text-xs font-medium text-white/60">
+            <label
+              htmlFor="email"
+              className="mb-1.5 block text-xs font-medium text-white/60"
+            >
               Email
             </label>
             <input
@@ -86,7 +115,10 @@ export default function ContactPage() {
           </div>
 
           <div>
-            <label htmlFor="reason" className="mb-1.5 block text-xs font-medium text-white/60">
+            <label
+              htmlFor="reason"
+              className="mb-1.5 block text-xs font-medium text-white/60"
+            >
               Reason
             </label>
             <select
@@ -101,7 +133,10 @@ export default function ContactPage() {
           </div>
 
           <div>
-            <label htmlFor="message" className="mb-1.5 block text-xs font-medium text-white/60">
+            <label
+              htmlFor="message"
+              className="mb-1.5 block text-xs font-medium text-white/60"
+            >
               Message
             </label>
             <textarea
@@ -123,5 +158,5 @@ export default function ContactPage() {
         </form>
       </div>
     </div>
-  )
+  );
 }

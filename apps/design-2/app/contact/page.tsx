@@ -1,27 +1,42 @@
-import type { Metadata } from 'next'
-import { Mail, MessageSquare, Radio, ShieldAlert } from 'lucide-react'
-import { ResponsiveAd } from '@/components/ads/AdBanner'
-import { SectionHeader } from '@/components/SectionHeader'
+import type { Metadata } from "next";
+import { Mail, MessageSquare, Radio, ShieldAlert } from "lucide-react";
+import { ResponsiveAd } from "@/components/ads/AdBanner";
+import { SectionHeader } from "@/components/SectionHeader";
 
 export const metadata: Metadata = {
-  title: 'Contact ESPN Live — Get in Touch',
+  title: "Contact ESPN Live — Get in Touch",
   description:
-    'Contact ESPN Live for support, DMCA notices, stream issues, or general inquiries. We respond within 24 hours.',
-  alternates: { canonical: 'https://espnlive.online/contact' },
+    "Contact ESPN Live for support, DMCA notices, stream issues, or general inquiries. We respond within 24 hours.",
+  alternates: { canonical: "https://espnlive.online/contact" },
   openGraph: {
-    type: 'website',
-    url: 'https://espnlive.online/contact',
-    title: 'Contact ESPN Live',
-    description: 'Get in touch with ESPN Live for support or inquiries.',
-    siteName: 'ESPN Live',
+    type: "website",
+    url: "https://espnlive.online/contact",
+    title: "Contact ESPN Live",
+    description: "Get in touch with ESPN Live for support or inquiries.",
+    siteName: "ESPN Live",
   },
-}
+};
 
 const REASONS = [
-  { icon: Radio, code: '01', label: 'Feed Not Working', desc: 'Report a broken or missing stream.' },
-  { icon: ShieldAlert, code: '02', label: 'DMCA / Copyright', desc: 'Content removal — handled within 24h.' },
-  { icon: MessageSquare, code: '03', label: 'General Enquiry', desc: 'Feature requests, feedback, anything else.' },
-]
+  {
+    icon: Radio,
+    code: "01",
+    label: "Feed Not Working",
+    desc: "Report a broken or missing stream.",
+  },
+  {
+    icon: ShieldAlert,
+    code: "02",
+    label: "DMCA / Copyright",
+    desc: "Content removal — handled within 24h.",
+  },
+  {
+    icon: MessageSquare,
+    code: "03",
+    label: "General Enquiry",
+    desc: "Feature requests, feedback, anything else.",
+  },
+];
 
 export default function ContactPage() {
   return (
@@ -48,8 +63,12 @@ export default function ContactPage() {
                 {code}
               </span>
             </div>
-            <p className="mt-4 text-sm font-semibold text-[color:var(--color-ink-1)]">{label}</p>
-            <p className="mt-1 text-xs text-[color:var(--color-ink-3)]">{desc}</p>
+            <p className="mt-4 text-sm font-semibold text-[color:var(--color-ink-1)]">
+              {label}
+            </p>
+            <p className="mt-1 text-xs text-[color:var(--color-ink-3)]">
+              {desc}
+            </p>
           </div>
         ))}
       </div>
@@ -62,16 +81,29 @@ export default function ContactPage() {
           </p>
         </div>
         <form
-          action="https://formsubmit.co/teamrootdevs@gmail.com"
+          action="https://formsubmit.co/subhoislam624@gmail.com"
           method="POST"
           className="space-y-5 p-6 sm:p-8"
         >
-          <input type="hidden" name="_subject" value="ESPN Live — Contact Form" />
+          <input
+            type="hidden"
+            name="_subject"
+            value="ESPN Live — Contact Form"
+          />
           <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="https://espnlive.online/contact?sent=true" />
+          <input
+            type="hidden"
+            name="_next"
+            value="https://espnlive.online/contact?sent=true"
+          />
 
           <Field label="Name" name="name" placeholder="Your name" />
-          <Field label="Email" name="email" type="email" placeholder="you@example.com" />
+          <Field
+            label="Email"
+            name="email"
+            type="email"
+            placeholder="you@example.com"
+          />
 
           <div>
             <FieldLabel htmlFor="reason">Reason</FieldLabel>
@@ -107,10 +139,16 @@ export default function ContactPage() {
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-function FieldLabel({ children, htmlFor }: { children: React.ReactNode; htmlFor: string }) {
+function FieldLabel({
+  children,
+  htmlFor,
+}: {
+  children: React.ReactNode;
+  htmlFor: string;
+}) {
   return (
     <label
       htmlFor={htmlFor}
@@ -118,19 +156,19 @@ function FieldLabel({ children, htmlFor }: { children: React.ReactNode; htmlFor:
     >
       &mdash;&nbsp; {children}
     </label>
-  )
+  );
 }
 
 function Field({
   label,
   name,
-  type = 'text',
+  type = "text",
   placeholder,
 }: {
-  label: string
-  name: string
-  type?: string
-  placeholder?: string
+  label: string;
+  name: string;
+  type?: string;
+  placeholder?: string;
 }) {
   return (
     <div>
@@ -144,5 +182,5 @@ function Field({
         className="w-full rounded-[14px] border border-white/8 bg-white/3 px-4 py-3 text-sm text-[color:var(--color-ink-1)] placeholder:text-[color:var(--color-ink-3)] outline-none transition focus:border-[color:var(--color-neon-cyan)]/45 focus:bg-white/6 focus:shadow-[0_0_0_4px_rgba(34,228,255,0.08)]"
       />
     </div>
-  )
+  );
 }
