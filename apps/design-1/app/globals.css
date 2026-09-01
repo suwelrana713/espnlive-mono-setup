@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@source "../../../packages/shared/**/*.{ts,tsx}";
+
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
