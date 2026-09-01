@@ -1,6 +1,7 @@
 'use client'
 
 import { AdBanner } from './AdBanner'
+import { adsEnabled } from '@espnlive/shared/lib/ads-config'
 
 /**
  * Fixed side-rail ads outside the max-w-7xl main container.
@@ -10,6 +11,7 @@ import { AdBanner } from './AdBanner'
  * xl breakpoint (1280px) ≈ 7xl (1280px) + no room, so use 2xl (1536px) for real side rails.
  */
 export function SideRailAds() {
+  if (!adsEnabled) return null
   return (
     <>
       <aside

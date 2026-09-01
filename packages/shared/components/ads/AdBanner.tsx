@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { ADS, type BannerSize } from './adConfig'
 import { cn } from '@/lib/utils'
+import { adsEnabled } from '@espnlive/shared/lib/ads-config'
 
 interface AdBannerProps {
   size: BannerSize
@@ -18,11 +19,14 @@ export function AdBanner({ size, className }: AdBannerProps) {
   const cfg = ADS.banners[size]
 
   useEffect(() => {
+    if (!adsEnabled) return
     const iframe = ref.current
     if (!iframe) return
     const html = `<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;padding:0;background:transparent;overflow:hidden}</style></head><body><script type="text/javascript">atOptions={'key':'${cfg.key}','format':'iframe','height':${cfg.h},'width':${cfg.w},'params':{}};</script><script async src="${ADS.invokeBase}/${cfg.key}/invoke.js"></script></body></html>`
     iframe.srcdoc = html
   }, [cfg.key, cfg.w, cfg.h])
+
+  if (!adsEnabled) return null
 
   return (
     <div
@@ -60,6 +64,7 @@ interface ResponsiveAdProps {
  * the visible one because the hidden iframe stays display:none.
  */
 export function ResponsiveAd({ mobile, desktop, breakpoint = 'md', className }: ResponsiveAdProps) {
+  if (!adsEnabled) return null
   const showMobile = {
     sm: 'block sm:hidden',
     md: 'block md:hidden',
