@@ -1,0 +1,27 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@/components/*": ["./components/*"],
+      "@/ads/*": ["../../packages/shared/components/ads/*"],
+      "@/lib/*": ["../../packages/shared/lib/*"],
+      "@/hooks/*": ["../../packages/shared/hooks/*"],
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts",
+    "../../packages/shared/lib/**/*.ts",
+    "../../packages/shared/hooks/**/*.ts",
+    "../../packages/shared/components/ads/**/*.ts",
+    "../../packages/shared/components/ads/**/*.tsx"
+  ],
+  "exclude": ["node_modules", ".next"]
+}

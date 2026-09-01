@@ -10,9 +10,11 @@
     "dev:design-1": "pnpm --filter design-1 dev",
     "dev:design-2": "pnpm --filter design-2 dev",
     "dev:design-3": "pnpm --filter design-3 dev",
+    "dev:design-4": "pnpm --filter design-4 dev",
     "build:design-1": "pnpm --filter design-1 build",
     "build:design-2": "pnpm --filter design-2 build",
-    "build:design-3": "pnpm --filter design-3 build"
+    "build:design-3": "pnpm --filter design-3 build",
+    "build:design-4": "pnpm --filter design-4 build"
   },
   "devDependencies": {
     "typescript": "^5"
