@@ -16,7 +16,7 @@ export function TopBar() {
   const pathname = usePathname();
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-surface/95 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-[1440px] items-center gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-14 max-w-[1440px] items-center gap-3 sm:gap-4 px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
           <span className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-white">
             <Zap className="h-4 w-4" strokeWidth={2.4} fill="currentColor" />
@@ -25,7 +25,7 @@ export function TopBar() {
             <span className="display text-[16px] font-extrabold tracking-tight text-ink">
               ESPN Live
             </span>
-            <span className="mono text-[9px] uppercase tracking-[0.2em] text-muted">
+            <span className="mono text-[11px] uppercase tracking-[0.2em] text-muted">
               Sports Hub
             </span>
           </div>
@@ -67,7 +67,7 @@ export function TopBar() {
           <Link
             href="/search"
             aria-label="Search"
-            className="flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink transition hover:border-primary sm:hidden"
+            className="flex h-11 w-11 sm:h-9 sm:w-9 items-center justify-center rounded-md border border-line text-ink transition hover:border-primary sm:hidden"
           >
             <Search className="h-4 w-4" strokeWidth={1.75} />
           </Link>

@@ -22,6 +22,7 @@ function Badge({ src, name }: { src: string; name: string }) {
         src={getBadgeUrl(src)}
         alt={name}
         fill
+        sizes="(max-width: 640px) 48px, 64px"
         className="object-contain p-0.5"
         unoptimized
         onError={(e) => {
@@ -47,7 +48,7 @@ export function MatchRow({ match, index = 0, compact = false }: MatchRowProps) {
         href={`/match/${match.id}?cat=${match.category}`}
         className={cn(
           "group relative grid items-center gap-4 border-b border-hairline py-4 transition-colors hover:bg-panel",
-          "grid-cols-[64px_1fr_auto] sm:grid-cols-[92px_1fr_auto_28px] sm:gap-6 sm:px-4",
+          "grid-cols-[48px_1fr_auto] sm:grid-cols-[64px_1fr_auto] sm:grid-cols-[92px_1fr_auto_28px] sm:gap-6 sm:px-4",
           isLive && "bg-panel/60",
           compact && "py-3 sm:px-2",
         )}
@@ -56,12 +57,12 @@ export function MatchRow({ match, index = 0, compact = false }: MatchRowProps) {
           {isLive ? (
             <div className="flex items-center gap-1.5">
               <LiveDot />
-              <span className="mono text-[11px] font-semibold uppercase tracking-[0.16em] text-live">
+              <span className="mono text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.16em] text-live">
                 Live
               </span>
             </div>
           ) : (
-            <span className="mono text-[13px] font-semibold text-ink tabular-nums">
+            <span className="mono text-[14px] sm:text-[13px] font-semibold text-ink tabular-nums">
               {formatMatchTime(match.date)}
             </span>
           )}
@@ -114,7 +115,7 @@ export function MatchRow({ match, index = 0, compact = false }: MatchRowProps) {
         </div>
 
         <div className="hidden items-center justify-center sm:flex">
-          <span className="flex h-7 w-7 items-center justify-center rounded-full border border-hairline text-ink transition group-hover:border-accent group-hover:bg-accent group-hover:text-white">
+          <span className="flex h-9 w-9 sm:h-7 sm:w-7 items-center justify-center rounded-full border border-hairline text-ink transition group-hover:border-accent group-hover:bg-accent group-hover:text-white">
             <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
           </span>
         </div>

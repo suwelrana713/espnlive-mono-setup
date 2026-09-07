@@ -10,7 +10,7 @@ export function LiveBadge({ className, size = 'md' }: LiveBadgeProps) {
     <span
       className={cn(
         'inline-flex items-center gap-1.5 rounded-full bg-red-600 font-bold uppercase tracking-wider text-white',
-        size === 'sm' ? 'px-2 py-0.5 text-[10px]' : 'px-2.5 py-1 text-xs',
+        size === 'sm' ? 'px-2 py-0.5 text-[11px] sm:text-[10px]' : 'px-2.5 py-1 text-xs',
         className
       )}
     >

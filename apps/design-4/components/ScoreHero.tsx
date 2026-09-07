@@ -41,6 +41,7 @@ export function ScoreHero({ matches }: ScoreHeroProps) {
           src={getPosterUrl(match.poster)}
           alt=""
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover opacity-15"
           unoptimized
           priority
@@ -102,8 +103,8 @@ export function ScoreHero({ matches }: ScoreHeroProps) {
                   <div
                     className={
                       isLive
-                        ? "mono rounded-tag border-2 border-live bg-live/10 px-6 py-3 text-[48px] font-bold leading-none text-live sm:text-[72px]"
-                        : "mono rounded-tag border-2 border-neon/40 bg-panel-2 px-6 py-3 text-[48px] font-bold leading-none text-fg sm:text-[72px]"
+                        ? "mono rounded-tag border-2 border-live bg-live/10 px-6 py-3 text-2xl sm:text-4xl md:text-[48px] font-bold leading-none text-live sm:text-[72px]"
+                        : "mono rounded-tag border-2 border-neon/40 bg-panel-2 px-6 py-3 text-2xl sm:text-4xl md:text-[48px] font-bold leading-none text-fg sm:text-[72px]"
                     }
                   >
                     {isLive ? "LIVE" : formatMatchTime(match.date)}
@@ -163,6 +164,7 @@ function TeamBlock({
           src={getBadgeUrl(team.badge)}
           alt={team.name}
           fill
+          sizes="64px"
           className="object-contain p-2"
           unoptimized
           onError={(e) => {

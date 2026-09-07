@@ -49,7 +49,7 @@ export function SearchClient({ initialQuery }: SearchClientProps) {
         <p className="mono text-[10px] uppercase tracking-[0.28em] text-neon">
           // Query · Search index
         </p>
-        <h1 className="display mt-3 text-[52px] font-bold leading-[0.95] text-fg sm:text-[80px]">
+        <h1 className="display mt-3 text-3xl sm:text-4xl md:text-[52px] font-bold leading-[0.95] text-fg sm:text-[80px]">
           Query the wire.
         </h1>
         <p className="mt-4 max-w-xl text-fg-mid">
@@ -110,7 +110,7 @@ export function SearchClient({ initialQuery }: SearchClientProps) {
                     eyebrow="Channels matched"
                     title={`${filteredSports.length} sport${filteredSports.length === 1 ? "" : "s"}`}
                   />
-                  <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                     {filteredSports.map((sport, i) => (
                       <SportBrick key={sport.id} sport={sport} index={i} />
                     ))}

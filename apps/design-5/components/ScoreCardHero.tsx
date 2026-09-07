@@ -100,7 +100,7 @@ export function ScoreCardHero({ matches }: ScoreCardHeroProps) {
                     <span className="numeric text-[10px] font-bold uppercase tracking-widest text-live">
                       In progress
                     </span>
-                    <div className="numeric flex items-center gap-2 text-[42px] font-extrabold text-ink sm:text-[56px]">
+                    <div className="numeric flex items-center gap-2 text-[28px] font-extrabold text-ink sm:text-[42px] md:text-[56px]">
                       <span>—</span>
                       <span className="text-faint">:</span>
                       <span>—</span>
@@ -115,7 +115,7 @@ export function ScoreCardHero({ matches }: ScoreCardHeroProps) {
                     <span className="mono text-[10px] uppercase tracking-widest text-muted">
                       Kick-off
                     </span>
-                    <div className="numeric text-[42px] font-extrabold leading-none text-ink sm:text-[56px]">
+                    <div className="numeric text-[28px] font-extrabold leading-none text-ink sm:text-[42px] md:text-[56px]">
                       {formatMatchTime(match.date)}
                     </div>
                     <span className="mono text-[11px] text-muted">

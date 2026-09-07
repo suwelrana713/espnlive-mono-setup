@@ -80,7 +80,7 @@ export default function AboutPage() {
 
         <section>
           <h2 className="mb-3 text-xl font-bold text-white">Sports We Cover</h2>
-          <ul className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-3">
+          <ul className="grid grid-cols-2 gap-3 sm:gap-2 text-sm sm:grid-cols-3">
             {['Football / Soccer', 'Basketball', 'Tennis', 'Cricket', 'American Football', 'Hockey', 'Baseball', 'Motor Sports', 'MMA / UFC', 'Rugby', 'Golf', 'Darts'].map(sport => (
               <li key={sport} className="flex items-center gap-2 text-white/50">
                 <span className="h-1.5 w-1.5 rounded-full bg-red-500 flex-shrink-0" />

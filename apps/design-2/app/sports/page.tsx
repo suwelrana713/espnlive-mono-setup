@@ -35,7 +35,7 @@ async function SportsGrid() {
   })
 
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5">
       {sports.map((sport, i) => (
         <SportCard key={sport.id} sport={sport} matchCount={counts[sport.id]} index={i} />
       ))}

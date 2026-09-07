@@ -50,7 +50,7 @@ export function MatchesLoadMore({ matches, step = 12 }: Props) {
           <button
             type="button"
             onClick={() => setVisible((v) => v + step)}
-            className="mono group inline-flex items-center gap-2 rounded-sm border border-ink px-6 py-3 text-[12px] font-semibold uppercase tracking-[0.22em] text-ink transition hover:bg-ink hover:text-paper"
+            className="mono group inline-flex items-center gap-2 rounded-sm border border-ink px-6 py-3 text-[13px] sm:text-[12px] font-semibold uppercase tracking-[0.22em] text-ink transition hover:bg-ink hover:text-paper"
           >
             Load more
             <ChevronDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />

@@ -171,7 +171,7 @@ export default async function MatchPage({ params, searchParams }: Props) {
                     <span className="mono text-[10px] font-bold uppercase tracking-widest text-live">
                       In progress
                     </span>
-                    <div className="numeric flex items-center gap-3 text-[52px] font-extrabold leading-none text-ink sm:text-[72px]">
+                    <div className="numeric flex items-center gap-3 text-[32px] font-extrabold leading-none text-ink sm:text-[52px] md:text-[72px]">
                       <span>—</span>
                       <span className="text-faint">:</span>
                       <span>—</span>
@@ -186,7 +186,7 @@ export default async function MatchPage({ params, searchParams }: Props) {
                     <span className="mono text-[10px] font-bold uppercase tracking-widest text-muted">
                       Kick-off
                     </span>
-                    <div className="numeric text-[52px] font-extrabold leading-none text-ink sm:text-[72px] tabular-nums">
+                    <div className="numeric text-[32px] font-extrabold leading-none text-ink sm:text-[52px] md:text-[72px] tabular-nums">
                       {formatMatchTime(match.date)}
                     </div>
                     <span className="mono text-[11px] text-muted">
@@ -209,7 +209,7 @@ export default async function MatchPage({ params, searchParams }: Props) {
         <ResponsiveAd mobile="320x50" desktop="728x90" />
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
+      <div className="grid gap-6 grid-cols-1 lg:grid-cols-[1fr_320px]">
         <div className="min-w-0 space-y-8">
           {streams.length > 0 ? (
             <MatchViewer streams={streams} title={match.title} />

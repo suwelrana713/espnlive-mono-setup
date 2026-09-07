@@ -111,7 +111,7 @@ async function ChannelDeck() {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {allSports.slice(0, 10).map((sport, i) => (
         <SportBrick
           key={sport.id}
@@ -132,7 +132,7 @@ export default function HomePage() {
           <p className="mono text-[10px] uppercase tracking-[0.28em] text-neon">
             // Broadcast center · Live feed
           </p>
-          <h1 className="display mt-3 text-[44px] font-bold leading-[0.98] text-fg sm:text-[68px]">
+          <h1 className="display mt-3 text-2xl sm:text-3xl md:text-[44px] font-bold leading-[0.98] text-fg sm:text-[68px]">
             Every match, one signal.
           </h1>
         </div>

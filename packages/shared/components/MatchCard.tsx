@@ -17,7 +17,7 @@ interface MatchCardProps {
 
 function TeamDisplay({ name, badge, align = 'left' }: { name: string; badge: string; align?: 'left' | 'right' }) {
   return (
-    <div className={cn('flex flex-1 items-center gap-2.5', align === 'right' && 'flex-row-reverse')}>
+    <div className={cn('flex flex-1 items-center gap-2.5 min-w-0', align === 'right' && 'flex-row-reverse')}>
       <div className="relative h-9 w-9 shrink-0">
         <Image
           src={getBadgeUrl(badge)}
@@ -28,7 +28,7 @@ function TeamDisplay({ name, badge, align = 'left' }: { name: string; badge: str
           onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
         />
       </div>
-      <span className={cn('line-clamp-1 text-sm font-semibold text-white', align === 'right' && 'text-right')}>
+      <span className={cn('line-clamp-2 sm:line-clamp-1 min-w-0 flex-1 text-sm font-semibold text-white', align === 'right' && 'text-right')}>
         {name}
       </span>
     </div>
@@ -96,7 +96,7 @@ export function MatchCard({ match, index = 0, compact = false }: MatchCardProps)
           </div>
         </div>
 
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 transition-opacity group-hover:opacity-100">
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 opacity-40 md:opacity-0 transition-opacity md:group-hover:opacity-100">
           <ChevronRight className="h-4 w-4 text-white/30" />
         </div>
       </Link>

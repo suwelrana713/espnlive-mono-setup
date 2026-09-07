@@ -47,7 +47,7 @@ export function SearchBar({
     <form onSubmit={handleSubmit} className={cn('relative group', className)}>
       <div
         className={cn(
-          'flex items-center gap-2 rounded-[14px] border border-white/8 bg-white/3 pl-4 pr-2 transition',
+          'flex items-center gap-2 rounded-[14px] border border-white/8 bg-white/3 pl-3 pr-2 sm:pl-4 transition',
           'group-focus-within:border-[color:var(--color-neon-cyan)]/50 group-focus-within:bg-white/6',
           'group-focus-within:shadow-[0_0_0_4px_rgba(34,228,255,0.08)]',
           compact ? 'h-9' : 'h-12'

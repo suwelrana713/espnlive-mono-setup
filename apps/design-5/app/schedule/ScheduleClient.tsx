@@ -76,7 +76,7 @@ export function ScheduleClient({ matches }: ScheduleClientProps) {
         <span className="rounded-pill bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary">
           Schedule
         </span>
-        <h1 className="display mt-3 text-[32px] font-extrabold leading-[1.05] text-ink sm:text-[42px]">
+        <h1 className="display mt-3 text-[24px] font-extrabold leading-[1.05] text-ink sm:text-[32px] md:text-[42px]">
           The week ahead.
         </h1>
       </div>
@@ -97,7 +97,7 @@ export function ScheduleClient({ matches }: ScheduleClientProps) {
             <ChevronLeft className="h-4 w-4" strokeWidth={1.75} />
           </button>
 
-          <div className="flex flex-1 gap-2 overflow-x-auto pb-1">
+          <div className="flex flex-1 gap-2 overflow-x-auto pb-1 scroll-smooth [-webkit-overflow-scrolling:touch] snap-x snap-mandatory">
             {availableDates.map((d) => (
               <button
                 key={d}

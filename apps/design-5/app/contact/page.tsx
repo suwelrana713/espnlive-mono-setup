@@ -42,7 +42,7 @@ export default function ContactPage() {
         <span className="rounded-pill bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary">
           Contact
         </span>
-        <h1 className="display mt-3 text-[40px] font-extrabold leading-[1.05] text-ink sm:text-[52px]">
+        <h1 className="display mt-3 text-[28px] font-extrabold leading-[1.05] text-ink sm:text-[40px] md:text-[52px]">
           Send us a message.
         </h1>
         <p className="mt-3 max-w-xl text-[14px] text-muted">
@@ -55,7 +55,7 @@ export default function ContactPage() {
         <ResponsiveAd mobile="320x50" desktop="728x90" />
       </div>
 
-      <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <section className="grid gap-8 grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="space-y-6">
           <SectionTitle title="Reasons to write" accent="primary" />
           <ul className="space-y-3">

@@ -71,7 +71,7 @@ export function ScoreRow({
               {formatMatchTime(match.date)}
             </span>
           )}
-          <span className="mono text-[10px] text-faint">
+          <span className="mono text-[11px] text-faint">
             {status === "upcoming"
               ? formatMatchDate(match.date).split(",")[0]
               : status === "finished"
@@ -102,7 +102,7 @@ export function ScoreRow({
             </p>
           )}
           {showCompetition && (
-            <p className="mono mt-1.5 text-[10px] uppercase tracking-[0.12em] text-muted">
+            <p className="mono mt-1.5 text-[11px] uppercase tracking-[0.12em] text-muted">
               {match.category.replace(/-/g, " ")}
             </p>
           )}

@@ -49,7 +49,7 @@ export function SearchClient({ initialQuery }: SearchClientProps) {
         <span className="rounded-pill bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary">
           Search
         </span>
-        <h1 className="display mt-3 text-[32px] font-extrabold leading-[1.05] text-ink sm:text-[42px]">
+        <h1 className="display mt-3 text-[24px] font-extrabold leading-[1.05] text-ink sm:text-[32px] md:text-[42px]">
           Find any match.
         </h1>
         <p className="mt-2 max-w-xl text-[14px] text-muted">

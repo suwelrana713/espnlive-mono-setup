@@ -76,7 +76,7 @@ export function ScheduleClient({ matches }: ScheduleClientProps) {
     <div className="mx-auto max-w-[1360px] px-5 py-14 sm:px-8">
       <div className="border-b border-hairline pb-10">
         <p className="eyebrow">Schedule · By date</p>
-        <h1 className="serif mt-3 text-[44px] font-black leading-[0.95] tracking-tight text-ink sm:text-[68px]">
+        <h1 className="serif mt-3 text-2xl sm:text-3xl md:text-[44px] font-black leading-[0.95] tracking-tight text-ink sm:text-[68px]">
           The week ahead.
         </h1>
       </div>

@@ -47,7 +47,7 @@ export function SearchClient({ initialQuery }: SearchClientProps) {
     <div className="mx-auto max-w-[1360px] px-5 py-14 sm:px-8">
       <div className="max-w-3xl">
         <p className="eyebrow">Find</p>
-        <h1 className="serif mt-3 text-[52px] font-black leading-[0.95] tracking-tight text-ink sm:text-[80px]">
+        <h1 className="serif mt-3 text-3xl sm:text-4xl md:text-[52px] font-black leading-[0.95] tracking-tight text-ink sm:text-[80px]">
           Search the wire.
         </h1>
         <p className="mt-4 max-w-xl text-muted">

@@ -150,7 +150,7 @@ export default async function SportPage({ params }: Props) {
           <span className="mono text-[11px] uppercase tracking-widest text-muted">
             Channel · {sport}
           </span>
-          <h1 className="display mt-2 text-[36px] font-extrabold leading-[1.05] text-ink sm:text-[52px]">
+          <h1 className="display mt-2 text-[26px] font-extrabold leading-[1.05] text-ink sm:text-[36px] md:text-[52px]">
             {name}
           </h1>
           <p className="mt-2 max-w-xl text-[14px] text-muted">

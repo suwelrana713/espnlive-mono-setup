@@ -40,7 +40,7 @@ export default function ContactPage() {
     <div className="mx-auto max-w-[1160px] px-5 py-14 sm:px-8">
       <div className="border-b border-hairline pb-14">
         <p className="eyebrow">Correspondence · Desk</p>
-        <h1 className="serif mt-3 text-[52px] font-black leading-[0.95] tracking-tight text-ink sm:text-[88px]">
+        <h1 className="serif mt-3 text-3xl sm:text-4xl md:text-[52px] font-black leading-[0.95] tracking-tight text-ink sm:text-[88px]">
           Write to the desk.
         </h1>
         <p className="mt-4 max-w-xl text-muted">
@@ -92,7 +92,7 @@ export default function ContactPage() {
         <form
           action="https://formsubmit.co/subhoislam624@gmail.com"
           method="POST"
-          className="border border-hairline bg-panel p-8"
+          className="border border-hairline bg-panel p-4 sm:p-8"
         >
           <Eyebrow number="02">Send a message</Eyebrow>
           <input
@@ -152,7 +152,7 @@ export default function ContactPage() {
 
             <button
               type="submit"
-              className="mono w-full rounded-sm bg-ink py-4 text-[12px] font-semibold uppercase tracking-[0.22em] text-paper transition hover:bg-accent"
+              className="mono w-full rounded-sm bg-ink py-4 text-[13px] sm:text-[12px] font-semibold uppercase tracking-[0.22em] text-paper transition hover:bg-accent"
             >
               Send message
             </button>

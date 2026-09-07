@@ -153,7 +153,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <link rel="preconnect" href="https://streamed.pk" />
         <link rel="dns-prefetch" href="https://streamed.pk" />
       </head>
-      <body className="flex min-h-dvh flex-col bg-[#080c14] text-white antialiased">
+      <body className="flex min-h-dvh flex-col bg-[#080c14] text-white antialiased overflow-x-hidden">
         <Providers>
           <Navbar />
           <SideRailAds />

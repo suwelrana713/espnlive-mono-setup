@@ -52,7 +52,7 @@ export default function ContactPage() {
         <ResponsiveAd mobile="320x50" desktop="728x90" />
       </div>
 
-      <div className="mb-8 grid gap-3 sm:grid-cols-3">
+      <div className="mb-8 grid gap-3 grid-cols-1 md:grid-cols-3">
         {REASONS.map(({ icon: Icon, code, label, desc }) => (
           <div key={label} className="glass rounded-[22px] p-4">
             <div className="flex items-start justify-between">

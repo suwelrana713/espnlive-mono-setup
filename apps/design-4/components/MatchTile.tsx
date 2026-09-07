@@ -38,6 +38,7 @@ export function MatchTile({ match, index = 0, variant = "grid" }: MatchTileProps
               src={getPosterUrl(match.poster)}
               alt={match.title}
               fill
+              sizes="(max-width: 640px) 100vw, 50vw"
               className="object-cover opacity-70 transition group-hover:opacity-100 group-hover:scale-[1.02]"
               unoptimized
             />
@@ -45,15 +46,15 @@ export function MatchTile({ match, index = 0, variant = "grid" }: MatchTileProps
             <div className="grid-backdrop absolute inset-0" />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-void via-void/40 to-transparent" />
-          <div className="absolute left-3 top-3 flex items-center gap-2">
+          <div className="absolute left-1.5 sm:left-3 top-3 flex items-center gap-2">
             <StatusChip status={status} size="sm" />
           </div>
-          <div className="absolute right-3 top-3">
+          <div className="absolute right-1.5 sm:right-3 top-3">
             <span className="mono rounded-tag bg-void/80 px-2 py-1 text-[10px] uppercase tracking-[0.22em] text-fg-dim backdrop-blur-sm">
               {category}
             </span>
           </div>
-          <div className="absolute bottom-3 left-3 right-3">
+          <div className="absolute bottom-1.5 sm:bottom-3 left-1.5 sm:left-3 right-1.5 sm:right-3">
             {match.teams ? (
               <div className="flex items-center gap-3">
                 <TeamBadge src={match.teams.home.badge} name={match.teams.home.name} />
@@ -118,6 +119,7 @@ function TeamBadge({ src, name }: { src: string; name: string }) {
         src={getBadgeUrl(src)}
         alt={name}
         fill
+        sizes="32px"
         className="object-contain p-1"
         unoptimized
         onError={(e) => {

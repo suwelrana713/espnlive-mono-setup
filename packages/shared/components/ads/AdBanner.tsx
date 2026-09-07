@@ -33,7 +33,7 @@ export function AdBanner({ size, className }: AdBannerProps) {
       aria-label="Advertisement"
       role="complementary"
       data-ad-slot="banner"
-      className={cn('flex justify-center', className)}
+      className={cn('flex justify-center max-w-full overflow-hidden', className)}
     >
       <iframe
         ref={ref}

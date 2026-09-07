@@ -75,7 +75,7 @@ export function ScheduleClient({ matches }: ScheduleClientProps) {
         <p className="mono text-[10px] uppercase tracking-[0.28em] text-neon">
           // Schedule · By date
         </p>
-        <h1 className="display mt-3 text-[44px] font-bold leading-[0.95] text-fg sm:text-[68px]">
+        <h1 className="display mt-3 text-2xl sm:text-3xl md:text-[44px] font-bold leading-[0.95] text-fg sm:text-[68px]">
           The week ahead.
         </h1>
       </div>

@@ -38,7 +38,7 @@ export function SportCardSkeleton() {
 
 export function HeroSkeleton() {
   return (
-    <div className="relative h-[500px] w-full overflow-hidden rounded-3xl bg-white/3">
+    <div className="relative h-[280px] sm:h-[500px] w-full overflow-hidden rounded-3xl bg-white/3">
       <Skeleton className="absolute inset-0 rounded-none" />
     </div>
   )

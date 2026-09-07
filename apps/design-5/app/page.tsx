@@ -131,18 +131,18 @@ function groupByCategory(matches: Match[]) {
 
 export default function HomePage() {
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
+    <div className="grid gap-6 grid-cols-1 lg:grid-cols-[1fr_320px]">
       <div className="min-w-0 space-y-8">
         <div>
           <div className="mb-4 flex items-center gap-2">
-            <span className="rounded-pill bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary">
+            <span className="rounded-pill bg-primary/10 px-2 py-0.5 text-[11px] font-bold uppercase tracking-widest text-primary">
               Today
             </span>
             <span className="mono text-[11px] text-muted">
               Sports desk · {new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
             </span>
           </div>
-          <h1 className="display text-[32px] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-[40px]">
+          <h1 className="display text-[24px] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-[32px] md:text-[40px]">
             Live scores &amp; free streams.
           </h1>
           <p className="mt-2 max-w-xl text-[14px] text-muted">

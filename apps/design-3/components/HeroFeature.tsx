@@ -56,7 +56,7 @@ export function HeroFeature({ matches }: HeroFeatureProps) {
                 type="button"
                 aria-label="Previous"
                 onClick={() => go(-1)}
-                className="flex h-8 w-8 items-center justify-center border border-hairline transition hover:border-ink"
+                className="flex h-10 w-10 sm:h-8 sm:w-8 items-center justify-center border border-hairline transition hover:border-ink"
               >
                 <ChevronLeft className="h-4 w-4" strokeWidth={1.75} />
               </button>
@@ -64,7 +64,7 @@ export function HeroFeature({ matches }: HeroFeatureProps) {
                 type="button"
                 aria-label="Next"
                 onClick={() => go(1)}
-                className="flex h-8 w-8 items-center justify-center border border-hairline transition hover:border-ink"
+                className="flex h-10 w-10 sm:h-8 sm:w-8 items-center justify-center border border-hairline transition hover:border-ink"
               >
                 <ChevronRight className="h-4 w-4" strokeWidth={1.75} />
               </button>
@@ -92,7 +92,7 @@ export function HeroFeature({ matches }: HeroFeatureProps) {
                   </span>
                 </div>
 
-                <h1 className="serif mt-6 text-[40px] font-black leading-[0.98] tracking-tight text-ink sm:text-[64px] lg:text-[80px]">
+                <h1 className="serif mt-6 text-2xl sm:text-3xl md:text-[40px] font-black leading-[0.98] tracking-tight text-ink sm:text-[64px] lg:text-[80px]">
                   {headline}
                 </h1>
 
@@ -110,7 +110,7 @@ export function HeroFeature({ matches }: HeroFeatureProps) {
                   href={`/match/${match.id}?cat=${match.category}`}
                   className="group inline-flex items-center gap-3 rounded-sm bg-ink px-6 py-4 text-white transition hover:bg-accent"
                 >
-                  <span className="mono text-[12px] font-semibold uppercase tracking-[0.22em]">
+                  <span className="mono text-[13px] sm:text-[12px] font-semibold uppercase tracking-[0.22em]">
                     {isLive ? "Watch live" : "Open match"}
                   </span>
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -136,12 +136,13 @@ export function HeroFeature({ matches }: HeroFeatureProps) {
               </div>
             </div>
 
-            <div className="relative min-h-[240px] overflow-hidden border-t border-hairline lg:border-l lg:border-t-0">
+            <div className="relative min-h-[160px] sm:min-h-[200px] md:min-h-[240px] overflow-hidden border-t border-hairline lg:border-l lg:border-t-0">
               {match.poster ? (
                 <Image
                   src={getPosterUrl(match.poster)}
                   alt={headline}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
                   unoptimized
                   priority

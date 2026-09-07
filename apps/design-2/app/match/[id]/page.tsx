@@ -136,7 +136,7 @@ export default async function MatchPage({ params, searchParams }: Props) {
             </div>
 
             {home && away ? (
-              <div className="relative mt-8 grid grid-cols-[1fr_auto_1fr] items-center gap-4 sm:gap-8">
+              <div className="relative mt-8 grid grid-cols-[1fr_auto_1fr] items-center gap-2 sm:gap-6">
                 <div className="text-right">
                   <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[color:var(--color-ink-3)]">Home</p>
                   <p className="mt-2 text-2xl font-bold leading-tight text-[color:var(--color-ink-1)] sm:text-4xl">{home}</p>

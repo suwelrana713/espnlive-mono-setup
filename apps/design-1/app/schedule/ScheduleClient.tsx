@@ -85,7 +85,7 @@ export function ScheduleClient({ matches }: ScheduleClientProps) {
           <ChevronLeft className="h-4 w-4" />
         </button>
 
-        <div className="flex gap-2 overflow-x-auto pb-1">
+        <div className="flex gap-2 overflow-x-auto pb-1 [-webkit-overflow-scrolling:touch]" style={{ WebkitOverflowScrolling: 'touch', scrollSnapType: 'x mandatory' }}>
           {availableDates.map(date => (
             <button
               key={date}

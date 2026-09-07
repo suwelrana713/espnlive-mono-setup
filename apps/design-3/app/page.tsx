@@ -133,7 +133,7 @@ export default function HomePage() {
         <div className="grid gap-6 sm:grid-cols-[1fr_auto] sm:items-end">
           <div>
             <p className="eyebrow">Volume 01 · Sports desk · Today</p>
-            <h1 className="serif mt-3 text-[44px] font-black leading-[0.95] tracking-tight text-ink sm:text-[68px]">
+            <h1 className="serif mt-3 text-2xl sm:text-3xl md:text-[44px] font-black leading-[0.95] tracking-tight text-ink sm:text-[68px]">
               The daily wire on live sport.
             </h1>
           </div>

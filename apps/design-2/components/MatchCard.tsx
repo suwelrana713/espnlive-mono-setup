@@ -74,7 +74,7 @@ export function MatchCard({ match, index = 0, compact = false }: MatchCardProps)
                   : 'border-white/8 bg-white/4 text-[color:var(--color-ink-3)]'
             )}
           >
-            {isLive ? <Radio className="h-4 w-4" /> : formatMatchTime(match.date).replace(/\s/g, '')}
+            {isLive ? <Radio className="h-4 w-4" /> : <span className="min-w-0 truncate">{formatMatchTime(match.date).replace(/\s/g, '')}</span>}
           </span>
           <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[color:var(--color-ink-4)]">
             {formatMatchDate(match.date).split(' ')[1] ?? ''}

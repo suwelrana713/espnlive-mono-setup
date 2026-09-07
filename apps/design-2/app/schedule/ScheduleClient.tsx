@@ -101,7 +101,7 @@ export function ScheduleClient({ matches }: Props) {
           <ChevronLeft className="h-4 w-4" />
         </button>
 
-        <div className="flex flex-1 gap-1 overflow-x-auto p-2">
+        <div className="flex flex-1 flex-nowrap gap-1 overflow-x-auto p-2">
           {availableDates.map((date) => {
             const label = dayChipLabel(date, today, tomorrow)
             const active = selectedDate === date
@@ -111,7 +111,7 @@ export function ScheduleClient({ matches }: Props) {
                 key={date}
                 onClick={() => setSelectedDate(date)}
                 className={cn(
-                  'group relative flex min-w-[68px] shrink-0 flex-col items-center justify-center rounded-[14px] border px-3 py-2 transition',
+                  'group relative flex min-w-[56px] sm:min-w-[68px] shrink-0 flex-col items-center justify-center rounded-[14px] border px-3 py-2 transition',
                   active
                     ? 'border-[color:var(--color-neon-cyan)]/50 bg-[color:var(--color-neon-cyan)]/10 text-[color:var(--color-neon-cyan)] shadow-[0_0_0_1px_rgba(34,228,255,0.2)]'
                     : 'border-white/6 bg-white/2 text-[color:var(--color-ink-2)] hover:border-white/16 hover:text-[color:var(--color-ink-1)]',

@@ -145,7 +145,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
       </head>
-      <body className="relative flex min-h-dvh flex-col bg-[color:var(--color-canvas)] text-[color:var(--color-ink-1)] antialiased">
+      <body className="relative flex min-h-dvh flex-col overflow-x-hidden bg-[color:var(--color-canvas)] text-[color:var(--color-ink-1)] antialiased">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-lg focus:bg-[color:var(--color-neon-cyan)] focus:px-3 focus:py-2 focus:text-xs focus:font-bold focus:uppercase focus:tracking-widest focus:text-black"

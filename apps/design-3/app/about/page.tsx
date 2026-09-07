@@ -63,7 +63,7 @@ export default function AboutPage() {
       <div className="grid gap-12 border-b border-hairline pb-16 lg:grid-cols-[1.4fr_1fr]">
         <div>
           <p className="eyebrow">About · The masthead</p>
-          <h1 className="serif mt-3 text-[52px] font-black leading-[0.95] tracking-tight text-ink sm:text-[92px]">
+          <h1 className="serif mt-3 text-3xl sm:text-4xl md:text-[52px] font-black leading-[0.95] tracking-tight text-ink sm:text-[92px]">
             An index for live sport.
           </h1>
         </div>
@@ -174,7 +174,7 @@ export default function AboutPage() {
           </div>
           <Link
             href="/contact"
-            className="mono inline-flex items-center gap-3 rounded-sm border border-ink px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-ink transition hover:bg-ink hover:text-paper"
+            className="mono inline-flex items-center gap-3 rounded-sm border border-ink px-6 py-3 text-[12px] sm:text-[11px] font-semibold uppercase tracking-[0.22em] text-ink transition hover:bg-ink hover:text-paper"
           >
             Contact the desk
           </Link>

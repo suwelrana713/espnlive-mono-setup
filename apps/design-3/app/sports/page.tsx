@@ -47,7 +47,7 @@ export default function SportsPage() {
     <div className="mx-auto max-w-[1360px] px-5 sm:px-8">
       <div className="border-b border-hairline py-10">
         <p className="eyebrow">Index</p>
-        <h1 className="serif mt-3 text-[44px] font-black leading-[0.95] tracking-tight text-ink sm:text-[64px]">
+        <h1 className="serif mt-3 text-2xl sm:text-3xl md:text-[44px] font-black leading-[0.95] tracking-tight text-ink sm:text-[64px]">
           Every sport we cover.
         </h1>
         <p className="mt-4 max-w-xl text-muted">

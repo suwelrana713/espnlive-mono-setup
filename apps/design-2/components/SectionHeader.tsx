@@ -11,7 +11,7 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ code, eyebrow, title, meta, action, className }: SectionHeaderProps) {
   return (
-    <div className={cn('mb-6 flex items-end justify-between gap-4', className)}>
+    <div className={cn('mb-6 flex items-end justify-between gap-3 sm:gap-4', className)}>
       <div className="flex items-start gap-4">
         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-neon-cyan)] tabular-nums pt-1">
           {code}

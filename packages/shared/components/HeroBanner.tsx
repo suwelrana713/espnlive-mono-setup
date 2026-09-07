@@ -53,7 +53,7 @@ export function HeroBanner({ match: matches }: HeroBannerProps) {
   }
 
   return (
-    <div className="relative flex flex-col overflow-hidden rounded-3xl border border-white/8 min-h-[280px] sm:min-h-[320px] lg:min-h-[360px]">
+    <div className="relative flex flex-col overflow-hidden rounded-3xl border border-white/8 min-h-[220px] sm:min-h-[280px] lg:min-h-[360px]">
       {/* Poster BG */}
       {match.poster && (
         <div className="absolute inset-0">
@@ -92,7 +92,7 @@ export function HeroBanner({ match: matches }: HeroBannerProps) {
           className="relative flex flex-1 flex-col"
         >
           {/* Top bar */}
-          <div className="flex items-center justify-between px-5 pt-5 sm:px-8 sm:pt-6">
+          <div className="flex items-center justify-between px-4 pt-4 sm:px-8 sm:pt-6">
             <div className="flex items-center gap-2.5">
               {isLive ? <LiveBadge /> : <UpcomingBadge />}
               <span className="text-xs font-semibold uppercase tracking-widest text-white/40">
@@ -108,7 +108,7 @@ export function HeroBanner({ match: matches }: HeroBannerProps) {
           </div>
 
           {/* Match display */}
-          <div className="flex flex-1 flex-col items-center justify-center px-5 py-4 sm:px-8 sm:py-5">
+          <div className="flex flex-1 flex-col items-center justify-center px-4 pt-4 sm:px-8 sm:pt-6 py-4 sm:py-5">
             {match.teams ? (
               <div className="w-full max-w-2xl">
                 <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 sm:gap-8">

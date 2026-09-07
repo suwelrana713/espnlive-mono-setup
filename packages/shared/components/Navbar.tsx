@@ -23,8 +23,8 @@ export function Navbar() {
   return (
     <>
       <header className="sticky top-0 z-40 border-b border-white/5 bg-black/80 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
-          <Link href="/" className="flex items-center group">
+        <div className="mx-auto flex h-14 sm:h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+          <Link href="/" className="flex items-center group min-w-0 truncate">
             <Image
               src="/logo.png"
               alt="ESPN Live"

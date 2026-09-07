@@ -151,7 +151,7 @@ export default async function MatchPage({ params, searchParams }: Props) {
             {match.category.replace(/-/g, " ")}
           </span>
         </div>
-        <h1 className="serif mt-6 text-[44px] font-black leading-[0.95] tracking-tight text-ink sm:text-[72px] lg:text-[88px]">
+        <h1 className="serif mt-6 text-2xl sm:text-3xl md:text-[44px] font-black leading-[0.95] tracking-tight text-ink sm:text-[72px] lg:text-[88px]">
           {headline}
         </h1>
         <div className="mt-6 flex flex-wrap items-center gap-6 text-muted">

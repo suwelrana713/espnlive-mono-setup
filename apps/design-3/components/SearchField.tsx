@@ -56,7 +56,7 @@ export function SearchField({
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
-        className="serif flex-1 bg-transparent text-[22px] font-semibold text-ink placeholder-faint outline-none sm:text-[28px]"
+        className="serif flex-1 bg-transparent text-[16px] sm:text-[22px] md:text-[28px] font-semibold text-ink placeholder-faint outline-none sm:text-[28px]"
       />
       {value && (
         <button

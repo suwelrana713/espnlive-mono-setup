@@ -34,9 +34,9 @@ export function HeroBanner({ match: matches }: HeroBannerProps) {
   const away = featured.teams?.away.name
 
   return (
-    <div className="grid grid-cols-1 gap-3 lg:grid-cols-[1.7fr_1fr]">
+    <div className="grid grid-cols-1 gap-3 md:grid-cols-[1.4fr_1fr] lg:grid-cols-[1.7fr_1fr]">
       {/* MAIN FEATURED PANEL */}
-      <div className="glass-strong relative overflow-hidden rounded-[32px] min-h-[440px] scan-line">
+      <div className="glass-strong relative overflow-hidden rounded-[32px] min-h-[320px] sm:min-h-[380px] lg:min-h-[440px] scan-line">
         {/* poster */}
         {featured.poster && (
           <div className="absolute inset-0">
@@ -53,7 +53,7 @@ export function HeroBanner({ match: matches }: HeroBannerProps) {
         {/* aurora sweep */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-[color:var(--color-neon-magenta)]/25 blur-[100px]" />
-          <div className="absolute -bottom-32 -right-32 h-[420px] w-[420px] rounded-full bg-[color:var(--color-neon-cyan)]/22 blur-[110px]" />
+          <div className="absolute -bottom-32 -right-32 h-[220px] w-[220px] sm:h-[320px] sm:w-[320px] lg:h-[420px] lg:w-[420px] rounded-full bg-[color:var(--color-neon-cyan)]/22 blur-[110px]" />
         </div>
 
         {/* Top bar — station id + counter */}
@@ -134,7 +134,7 @@ export function HeroBanner({ match: matches }: HeroBannerProps) {
 
         {/* Progress dots */}
         {total > 1 && (
-          <div className="absolute bottom-[62px] left-1/2 z-10 hidden -translate-x-1/2 gap-1.5 sm:flex">
+          <div className="absolute bottom-[62px] left-1/2 z-10 flex -translate-x-1/2 gap-1.5">
             {matches.map((_, i) => (
               <button
                 key={i}

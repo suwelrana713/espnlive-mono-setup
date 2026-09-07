@@ -51,7 +51,7 @@ export default function AboutPage() {
           <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-neon-cyan)]">
             &mdash;&nbsp; Station&nbsp;Profile
           </p>
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-[color:var(--color-ink-1)] sm:text-6xl">
+          <h1 className="mt-4 text-3xl font-bold tracking-tight text-[color:var(--color-ink-1)] sm:text-4xl md:text-6xl">
             The broadcast<br />
             index for <span className="text-[color:var(--color-neon-cyan)]">every</span> sport.
           </h1>

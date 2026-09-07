@@ -103,7 +103,7 @@ async function SportsSection() {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+    <div className="grid grid-cols-2 gap-2 sm:gap-4 sm:grid-cols-3 lg:grid-cols-5">
       {allSports.slice(0, 10).map((sport, i) => (
         <SportCard key={sport.id} sport={sport} matchCount={counts[sport.id]} index={i} />
       ))}

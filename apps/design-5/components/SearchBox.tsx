@@ -56,7 +56,7 @@ export function SearchBox({
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
-        className="display flex-1 bg-transparent text-[18px] font-extrabold text-ink placeholder-faint outline-none"
+        className="display flex-1 bg-transparent text-[16px] sm:text-[18px] font-extrabold text-ink placeholder-faint outline-none"
       />
       {value && (
         <button

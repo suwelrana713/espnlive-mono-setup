@@ -25,7 +25,7 @@ export function VideoPlayer({ embedUrl, title }: VideoPlayerProps) {
           "group relative overflow-hidden rounded-2xl bg-black",
           fullscreen
             ? "fixed inset-0 z-50 rounded-none"
-            : "aspect-video w-full",
+            : "aspect-video w-full max-w-full",
         )}
       >
         <iframe
@@ -49,7 +49,7 @@ export function VideoPlayer({ embedUrl, title }: VideoPlayerProps) {
             </button> */}
             <button
               onClick={() => setFullscreen((f) => !f)}
-              className="flex h-8 w-8 items-center justify-center rounded-lg bg-black/60 text-white/80 backdrop-blur-sm transition hover:bg-black/80"
+              className="flex h-10 w-10 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-black/60 text-white/80 backdrop-blur-sm transition hover:bg-black/80 focus-visible:ring-2 focus-visible:ring-white"
               title={fullscreen ? "Exit fullscreen" : "Fullscreen"}
             >
               {fullscreen ? (
