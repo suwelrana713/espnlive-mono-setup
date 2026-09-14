@@ -9,21 +9,39 @@ export default function AppleIcon() {
     (
       <div
         style={{
-          fontSize: 120,
-          background: "#00A651",
+          background: "linear-gradient(135deg, #00A651 0%, #00753A 100%)",
           width: "100%",
           height: "100%",
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          color: "white",
-          fontWeight: 900,
-          fontFamily: "serif",
-          letterSpacing: -4,
+          gap: 6,
           borderRadius: 36,
         }}
       >
-        K
+        <svg width="108" height="108" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M3 20 Q10 4 21 12"
+            stroke="#ffffff"
+            strokeWidth="2"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <circle cx="6" cy="19" r="2.4" fill="#ffffff" />
+        </svg>
+        <div
+          style={{
+            fontFamily: "serif",
+            fontSize: 20,
+            fontWeight: 900,
+            color: "#ffffff",
+            letterSpacing: -0.5,
+            display: "flex",
+          }}
+        >
+          Kickoff
+        </div>
       </div>
     ),
     size,

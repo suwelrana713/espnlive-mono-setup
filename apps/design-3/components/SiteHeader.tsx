@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -40,14 +41,16 @@ export function SiteHeader() {
             <Link
               href="/"
               aria-label="KickoffStreams home"
-              className="group flex items-baseline gap-2"
+              className="flex items-center"
             >
-              <span className="serif text-[26px] font-black leading-none tracking-tight text-ink">
-                Kickoff
-              </span>
-              <span className="mono text-[10px] font-bold uppercase tracking-[0.28em] text-accent">
-                Streams
-              </span>
+              <Image
+                src="/logo.png"
+                alt="KickoffStreams"
+                width={200}
+                height={44}
+                priority
+                className="h-10 w-auto"
+              />
             </Link>
 
             <nav className="hidden items-center gap-6 md:flex">

@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Zap } from "lucide-react";
+import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -20,19 +21,16 @@ export function TopBar() {
         <Link
           href="/"
           aria-label="FanZoneLive home"
-          className="flex items-center gap-2"
+          className="flex items-center"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-white">
-            <Zap className="h-4 w-4" strokeWidth={2.4} fill="currentColor" />
-          </span>
-          <div className="flex flex-col leading-none">
-            <span className="display text-[16px] font-extrabold tracking-tight text-ink">
-              FanZoneLive
-            </span>
-            <span className="mono text-[11px] uppercase tracking-[0.2em] text-muted">
-              Where fans watch
-            </span>
-          </div>
+          <Image
+            src="/logo.png"
+            alt="FanZoneLive"
+            width={180}
+            height={42}
+            priority
+            className="h-10 w-auto"
+          />
         </Link>
 
         <nav className="ml-2 hidden items-center gap-1 md:flex">

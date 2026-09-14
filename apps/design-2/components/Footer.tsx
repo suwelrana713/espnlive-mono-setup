@@ -1,5 +1,6 @@
+import Image from 'next/image'
 import Link from 'next/link'
-import { Radio, Signal } from 'lucide-react'
+import { Signal } from 'lucide-react'
 
 const CHANNELS = [
   ['football', 'Football'],
@@ -34,17 +35,15 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1.2fr]">
           {/* Station identity */}
           <div>
-            <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-[color:var(--color-neon-magenta)]/30 to-[color:var(--color-neon-cyan)]/30">
-                <Radio className="h-4 w-4 text-[color:var(--color-ink-1)]" />
-              </span>
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-[color:var(--color-ink-3)]">SportPulse</p>
-                <p className="text-lg font-bold uppercase tracking-[0.2em] text-[color:var(--color-ink-1)]">
-                  TV<span className="text-[color:var(--color-neon-cyan)]">.</span>
-                </p>
-              </div>
-            </div>
+            <Link href="/" aria-label="SportPulseTV home" className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="SportPulseTV"
+                width={210}
+                height={50}
+                className="h-12 w-auto"
+              />
+            </Link>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-[color:var(--color-ink-2)]">
               Feel every play. A free broadcast index for live sport &mdash; we do not host video, we aggregate publicly
               available embed feeds from third-party providers.

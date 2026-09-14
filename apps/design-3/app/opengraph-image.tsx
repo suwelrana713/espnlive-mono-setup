@@ -24,26 +24,62 @@ export default function OpengraphImage() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 16,
-            fontSize: 22,
-            color: "#00A651",
-            letterSpacing: 6,
-            textTransform: "uppercase",
-            fontWeight: 700,
+            gap: 20,
           }}
         >
           <div
             style={{
-              width: 14,
-              height: 14,
-              borderRadius: 7,
-              background: "#e10600",
+              width: 84,
+              height: 84,
+              borderRadius: 20,
+              background: "#00A651",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0 20px 60px -20px rgba(0, 166, 81, 0.55)",
             }}
-          />
-          KickoffStreams · Live
+          >
+            <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M3 20 Q10 4 21 12"
+                stroke="#ffffff"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                fill="none"
+              />
+              <circle cx="6" cy="19" r="2.6" fill="#ffffff" />
+            </svg>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                fontSize: 46,
+                fontWeight: 900,
+                color: "#0b0b0b",
+                letterSpacing: -1,
+                display: "flex",
+              }}
+            >
+              Kickoff<span style={{ color: "#00A651" }}>Streams</span>
+            </div>
+            <div
+              style={{
+                fontFamily: "sans-serif",
+                fontSize: 18,
+                color: "#00A651",
+                letterSpacing: 5,
+                textTransform: "uppercase",
+                fontWeight: 700,
+                marginTop: 4,
+                display: "flex",
+              }}
+            >
+              kickoffstreams.online
+            </div>
+          </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div
             style={{
               fontSize: 128,
@@ -75,15 +111,16 @@ export default function OpengraphImage() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "flex-end",
-            fontSize: 24,
+            fontFamily: "sans-serif",
+            fontSize: 22,
             color: "#666",
             letterSpacing: 2,
             textTransform: "uppercase",
             fontWeight: 600,
           }}
         >
-          <div style={{ display: "flex" }}>kickoffstreams.online</div>
-          <div style={{ display: "flex" }}>Football · Basketball · F1 · MMA</div>
+          <div style={{ display: "flex" }}>Free · HD · No signup</div>
+          <div style={{ display: "flex" }}>Football · NBA · F1 · MMA</div>
         </div>
       </div>
     ),

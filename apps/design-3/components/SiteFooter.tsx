@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const NAV_COLS = [
@@ -51,14 +52,15 @@ export function SiteFooter() {
             <Link
               href="/"
               aria-label="KickoffStreams home"
-              className="flex items-baseline gap-2"
+              className="flex items-center"
             >
-              <span className="serif text-4xl font-black leading-none tracking-tight text-ink">
-                Kickoff
-              </span>
-              <span className="mono text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
-                Streams
-              </span>
+              <Image
+                src="/logo.png"
+                alt="KickoffStreams"
+                width={260}
+                height={60}
+                className="h-14 w-auto"
+              />
             </Link>
             <p className="serif mt-6 text-[22px] leading-[1.25] text-ink-2">
               Every kickoff. Live. Free. One index for every live sport on the

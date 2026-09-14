@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Radio, Search } from "lucide-react";
+import { Search } from "lucide-react";
 
 export function MobileTopBar() {
   return (
@@ -7,12 +8,16 @@ export function MobileTopBar() {
       <Link
         href="/"
         aria-label="SportVibeHub home"
-        className="flex items-baseline gap-2"
+        className="flex items-center"
       >
-        <span className="display text-xl font-bold leading-none text-fg">
-          SportVibe
-        </span>
-        <span className="tag text-neon">// HUB</span>
+        <Image
+          src="/logo.png"
+          alt="SportVibeHub"
+          width={170}
+          height={40}
+          priority
+          className="h-9 w-auto"
+        />
       </Link>
 
       <div className="flex items-center gap-2">

@@ -1,10 +1,11 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Search, Radio, Home, LayoutGrid, CalendarClock, Info } from 'lucide-react'
+import { Menu, X, Search, Home, LayoutGrid, CalendarClock, Info } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const NAV = [
@@ -74,22 +75,15 @@ export function Navbar() {
       >
         <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 sm:px-6">
           {/* Wordmark */}
-          <Link
-            href="/"
-            aria-label="SportPulseTV home"
-            className="group flex items-center gap-3"
-          >
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-[color:var(--color-neon-magenta)]/30 to-[color:var(--color-neon-cyan)]/30">
-              <Radio className="h-4 w-4 text-[color:var(--color-ink-1)]" />
-            </span>
-            <div className="flex flex-col leading-tight">
-              <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-[color:var(--color-ink-3)]">
-                SportPulse
-              </span>
-              <span className="text-sm font-bold uppercase tracking-[0.18em] text-[color:var(--color-ink-1)]">
-                TV<span className="text-[color:var(--color-neon-cyan)]">.</span>
-              </span>
-            </div>
+          <Link href="/" aria-label="SportPulseTV home" className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="SportPulseTV"
+              width={170}
+              height={40}
+              priority
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Center pill nav */}

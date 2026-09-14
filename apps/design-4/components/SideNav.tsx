@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -39,12 +40,16 @@ export function SideNav() {
         <Link
           href="/"
           aria-label="SportVibeHub home"
-          className="flex items-baseline gap-2"
+          className="flex items-center"
         >
-          <span className="display text-3xl font-bold leading-none text-fg">
-            SportVibe
-          </span>
-          <span className="tag text-neon">// HUB</span>
+          <Image
+            src="/logo.png"
+            alt="SportVibeHub"
+            width={210}
+            height={50}
+            priority
+            className="h-12 w-auto"
+          />
         </Link>
 
         <div>

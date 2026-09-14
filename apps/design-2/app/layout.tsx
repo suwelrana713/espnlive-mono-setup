@@ -92,6 +92,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: BASE_URL,
   },
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png", sizes: "any" }],
+    shortcut: "/favicon.png",
+  },
   manifest: "/manifest.webmanifest",
 };
 

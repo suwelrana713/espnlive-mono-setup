@@ -20,41 +20,61 @@ export default function OpengraphImage() {
           fontFamily: "sans-serif",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 14,
-            fontSize: 22,
-            color: "#FF6B00",
-            letterSpacing: 6,
-            textTransform: "uppercase",
-            fontWeight: 800,
-          }}
-        >
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <div
             style={{
-              width: 48,
-              height: 48,
-              borderRadius: 10,
+              width: 84,
+              height: 84,
+              borderRadius: 20,
               background: "#FF6B00",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "white",
-              fontSize: 32,
-              fontWeight: 900,
+              boxShadow: "0 20px 60px -20px rgba(255, 107, 0, 0.5)",
             }}
           >
-            F
+            <svg width="54" height="54" viewBox="0 0 24 24" fill="none">
+              <circle cx="7" cy="8" r="2.2" fill="#ffffff" />
+              <circle cx="12" cy="6.5" r="2.6" fill="#ffffff" />
+              <circle cx="17" cy="8" r="2.2" fill="#ffffff" />
+              <path
+                d="M3 20 Q5 13 8 12.5 Q10 14 12 13.5 Q14 14 16 12.5 Q19 13 21 20 Z"
+                fill="#ffffff"
+              />
+            </svg>
           </div>
-          FanZoneLive
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                fontSize: 46,
+                fontWeight: 900,
+                color: "#0a0e14",
+                letterSpacing: -1,
+                display: "flex",
+              }}
+            >
+              FanZone<span style={{ color: "#FF6B00" }}>Live</span>
+            </div>
+            <div
+              style={{
+                fontSize: 18,
+                color: "#FF6B00",
+                letterSpacing: 5,
+                textTransform: "uppercase",
+                fontWeight: 800,
+                marginTop: 4,
+                display: "flex",
+              }}
+            >
+              fanzonelive.online
+            </div>
+          </div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           <div
             style={{
-              fontSize: 116,
+              fontSize: 118,
               fontWeight: 900,
               color: "#0a0e14",
               lineHeight: 0.95,
@@ -66,12 +86,12 @@ export default function OpengraphImage() {
           </div>
           <div
             style={{
-              fontSize: 116,
+              fontSize: 118,
               fontWeight: 900,
+              color: "#FF6B00",
               lineHeight: 0.95,
               letterSpacing: -5,
               display: "flex",
-              color: "#FF6B00",
             }}
           >
             watch live.
@@ -90,8 +110,8 @@ export default function OpengraphImage() {
             fontWeight: 700,
           }}
         >
-          <div style={{ display: "flex" }}>fanzonelive.online</div>
           <div style={{ display: "flex" }}>Free · HD · No signup</div>
+          <div style={{ display: "flex" }}>Football · NBA · F1 · MMA</div>
         </div>
       </div>
     ),
