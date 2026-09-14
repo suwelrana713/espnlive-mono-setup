@@ -17,7 +17,7 @@ interface Props {
   params: Promise<{ sport: string }>;
 }
 
-const BASE_URL = "https://espnlive.online";
+const BASE_URL = "https://kickoffstreams.online";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { sport } = await params;
@@ -36,10 +36,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: sportUrl,
       title,
       description,
-      siteName: "ESPN Live",
+      siteName: "KickoffStreams",
       images: [
         {
-          url: "/og-image.png",
+          url: "/opengraph-image",
           width: 1200,
           height: 630,
           alt: `Live ${name} Streams`,
@@ -55,6 +55,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export const revalidate = 60;
+export const dynamicParams = true;
+
+const PRERENDER_SPORTS = [
+  "football",
+  "basketball",
+  "american-football",
+  "hockey",
+  "baseball",
+  "motor-sports",
+  "fight",
+  "tennis",
+  "cricket",
+  "rugby",
+  "golf",
+  "darts",
+];
+
+export function generateStaticParams() {
+  return PRERENDER_SPORTS.map((sport) => ({ sport }));
+}
 
 async function SportListing({ sport }: { sport: string }) {
   const matches = await getMatchesBySport(sport).catch(() => []);
@@ -128,8 +148,37 @@ export default async function SportPage({ params }: Props) {
     sportData?.name ??
     sport.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: BASE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Sports",
+        item: `${BASE_URL}/sports`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name,
+        item: `${BASE_URL}/sports/${sport}`,
+      },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-[1360px] px-5 sm:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <div className="border-b border-hairline py-8">
         <Link
           href="/sports"

@@ -1,0 +1,26 @@
+{
+  "name": "KickoffStreams — Watch Live Sports Free",
+  "short_name": "KickoffStreams",
+  "description": "Every kickoff, live and free. Watch football, basketball, cricket, F1, MMA and more in HD.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f4ee",
+  "theme_color": "#00A651",
+  "orientation": "portrait",
+  "categories": ["sports", "entertainment", "news"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icon",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

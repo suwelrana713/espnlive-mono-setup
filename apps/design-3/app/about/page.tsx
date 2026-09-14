@@ -5,17 +5,17 @@ import { Eyebrow } from "@/components/Eyebrow";
 import { ResponsiveAd } from "@/ads/AdBanner";
 
 export const metadata: Metadata = {
-  title: "About ESPN Live — Free Sports Streaming Platform",
+  title: "About KickoffStreams — Free Live Sports Streaming",
   description:
-    "ESPN Live is a free sports streaming aggregator. Watch live football, basketball, tennis, cricket, and more from multiple HD stream sources worldwide.",
-  alternates: { canonical: "https://espnlive.online/about" },
+    "KickoffStreams is a free sports streaming aggregator. Every kickoff, live and free — football, basketball, tennis, cricket, F1, MMA and more in HD from multiple mirror sources.",
+  alternates: { canonical: "https://kickoffstreams.online/about" },
   openGraph: {
     type: "website",
-    url: "https://espnlive.online/about",
-    title: "About ESPN Live",
+    url: "https://kickoffstreams.online/about",
+    title: "About KickoffStreams",
     description:
-      "Free live sports streaming aggregator — football, basketball, cricket and more in HD.",
-    siteName: "ESPN Live",
+      "Free live sports streaming aggregator — every kickoff, live and free.",
+    siteName: "KickoffStreams",
   },
 };
 
@@ -57,9 +57,50 @@ const SPORTS_COVERED = [
   "Darts",
 ];
 
+const FAQS = [
+  {
+    q: "Is KickoffStreams really free?",
+    a: "Yes. Every stream on KickoffStreams is free to watch. No signup, no paywall, no subscription. Ads keep the service running.",
+  },
+  {
+    q: "Do I need to register or create an account?",
+    a: "No account needed. Open a match, pick a stream mirror, hit play.",
+  },
+  {
+    q: "Does KickoffStreams host the video streams?",
+    a: "No. KickoffStreams is an index. All video is served by independent third-party providers. We link to public embed URLs.",
+  },
+  {
+    q: "Which sports can I watch live?",
+    a: "Football, basketball, tennis, cricket, American football, hockey, baseball, motor sports (F1, MotoGP), MMA/UFC, rugby, golf, darts and more.",
+  },
+  {
+    q: "What if a stream is not working?",
+    a: "Each match has multiple mirror sources. Pick a different mirror. If all mirrors fail, the broadcast may not have started or has ended.",
+  },
+  {
+    q: "How do I report a copyright issue (DMCA)?",
+    a: "Use the contact form with the offending URL and proof of rights. We respond within 24 hours.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-[1360px] px-5 py-14 sm:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="grid gap-12 border-b border-hairline pb-16 lg:grid-cols-[1.4fr_1fr]">
         <div>
           <p className="eyebrow">About · The masthead</p>
@@ -69,8 +110,8 @@ export default function AboutPage() {
         </div>
         <div className="flex flex-col justify-end">
           <p className="serif text-2xl leading-[1.3] text-ink-2">
-            ESPN Live is a free, ads-supported broadcast index for global sport.
-            We link to the wire. We don’t host it.
+            KickoffStreams is a free, ads-supported broadcast index for global
+            sport. We link to the wire. We don’t host it.
           </p>
           <p className="mt-4 text-muted">
             Fast, quiet, no registration. Refreshed every minute from the
@@ -156,8 +197,8 @@ export default function AboutPage() {
             No hosting, no storage
           </h3>
           <p className="mt-4 text-muted">
-            ESPN Live does not host any video content. All streams linked are
-            provided by independent third parties. For official broadcasts,
+            KickoffStreams does not host any video content. All streams linked
+            are provided by independent third parties. For official broadcasts,
             please use licensed streaming services. This site is for
             entertainment purposes only.
           </p>
@@ -179,6 +220,24 @@ export default function AboutPage() {
             Contact the desk
           </Link>
         </div>
+      </section>
+
+      <section className="border-t border-hairline py-16">
+        <Eyebrow number="05">Frequently asked</Eyebrow>
+        <h2 className="serif mt-3 text-3xl sm:text-4xl font-black leading-tight text-ink">
+          Common questions
+        </h2>
+        <dl className="mt-8 divide-y divide-hairline border-y border-hairline">
+          {FAQS.map((f) => (
+            <div
+              key={f.q}
+              className="grid gap-3 py-6 sm:grid-cols-[1fr_2fr] sm:gap-10"
+            >
+              <dt className="serif text-lg font-semibold text-ink">{f.q}</dt>
+              <dd className="text-muted">{f.a}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <div className="mt-8 border-y border-hairline bg-panel-soft/60 py-3">

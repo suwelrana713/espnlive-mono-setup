@@ -37,12 +37,16 @@ export function SiteHeader() {
       <div className="mx-auto max-w-[1360px] px-5 sm:px-8">
         <div className="flex h-16 items-center justify-between gap-6">
           <div className="flex items-center gap-8">
-            <Link href="/" className="group flex items-baseline gap-2">
+            <Link
+              href="/"
+              aria-label="KickoffStreams home"
+              className="group flex items-baseline gap-2"
+            >
               <span className="serif text-[26px] font-black leading-none tracking-tight text-ink">
-                ESPN
+                Kickoff
               </span>
               <span className="mono text-[10px] font-bold uppercase tracking-[0.28em] text-accent">
-                Live
+                Streams
               </span>
             </Link>
 

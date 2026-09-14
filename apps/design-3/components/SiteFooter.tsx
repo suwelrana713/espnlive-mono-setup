@@ -48,21 +48,25 @@ export function SiteFooter() {
       <div className="mx-auto max-w-[1360px] px-5 py-16 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_2.6fr]">
           <div className="max-w-md">
-            <Link href="/" className="flex items-baseline gap-2">
+            <Link
+              href="/"
+              aria-label="KickoffStreams home"
+              className="flex items-baseline gap-2"
+            >
               <span className="serif text-4xl font-black leading-none tracking-tight text-ink">
-                ESPN
+                Kickoff
               </span>
               <span className="mono text-[11px] font-bold uppercase tracking-[0.28em] text-accent">
-                Live
+                Streams
               </span>
             </Link>
             <p className="serif mt-6 text-[22px] leading-[1.25] text-ink-2">
-              A free, ads-supported broadcast index. Every live match, every
-              sport — one page.
+              Every kickoff. Live. Free. One index for every live sport on the
+              wire.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted">
-              ESPN Live aggregates publicly available streams. No hosting, no
-              registration, no paywall.
+              KickoffStreams aggregates publicly available streams. No hosting,
+              no registration, no paywall.
             </p>
           </div>
 
@@ -91,7 +95,7 @@ export function SiteFooter() {
 
         <div className="mt-14 flex flex-col gap-4 border-t border-hairline pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="mono text-[11px] uppercase tracking-[0.22em] text-faint">
-            © {year} ESPN Live · Vol. 1
+            © {year} KickoffStreams · Vol. 1
           </p>
           <p className="max-w-xl text-xs leading-relaxed text-muted">
             Streams provided by third-party sources. For entertainment purposes
