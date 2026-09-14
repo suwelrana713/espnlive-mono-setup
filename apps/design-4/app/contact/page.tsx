@@ -4,16 +4,16 @@ import { SectionBar } from "@/components/SectionBar";
 import { ResponsiveAd } from "@/ads/AdBanner";
 
 export const metadata: Metadata = {
-  title: "Contact ESPN Live — Get in Touch",
+  title: "Contact SportVibeHub — Get in Touch",
   description:
-    "Contact ESPN Live for support, DMCA notices, stream issues, or general inquiries. We respond within 24 hours.",
-  alternates: { canonical: "https://espnlive.online/contact" },
+    "Contact SportVibeHub for support, DMCA notices, stream issues, or general inquiries. We respond within 24 hours.",
+  alternates: { canonical: "https://sportvibehub.online/contact" },
   openGraph: {
     type: "website",
-    url: "https://espnlive.online/contact",
-    title: "Contact ESPN Live",
-    description: "Get in touch with ESPN Live for support or inquiries.",
-    siteName: "ESPN Live",
+    url: "https://sportvibehub.online/contact",
+    title: "Contact SportVibeHub",
+    description: "Get in touch with SportVibeHub for support or inquiries.",
+    siteName: "SportVibeHub",
   },
 };
 
@@ -111,13 +111,13 @@ export default function ContactPage() {
           <input
             type="hidden"
             name="_subject"
-            value="ESPN Live — Contact Form"
+            value="SportVibeHub — Contact Form"
           />
           <input type="hidden" name="_captcha" value="false" />
           <input
             type="hidden"
             name="_next"
-            value="https://espnlive.online/contact?sent=true"
+            value="https://sportvibehub.online/contact?sent=true"
           />
 
           <div className="space-y-5">

@@ -36,11 +36,15 @@ export function SideNav() {
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 flex-col justify-between border-r border-line bg-panel px-5 py-6 lg:flex">
       <div className="flex flex-col gap-8">
-        <Link href="/" className="flex items-baseline gap-2">
+        <Link
+          href="/"
+          aria-label="SportVibeHub home"
+          className="flex items-baseline gap-2"
+        >
           <span className="display text-3xl font-bold leading-none text-fg">
-            ESPN
+            SportVibe
           </span>
-          <span className="tag text-neon">// LIVE</span>
+          <span className="tag text-neon">// HUB</span>
         </Link>
 
         <div>

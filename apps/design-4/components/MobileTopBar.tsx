@@ -4,11 +4,15 @@ import { Radio, Search } from "lucide-react";
 export function MobileTopBar() {
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-line bg-panel/90 px-4 backdrop-blur-md lg:hidden">
-      <Link href="/" className="flex items-baseline gap-2">
+      <Link
+        href="/"
+        aria-label="SportVibeHub home"
+        className="flex items-baseline gap-2"
+      >
         <span className="display text-xl font-bold leading-none text-fg">
-          ESPN
+          SportVibe
         </span>
-        <span className="tag text-neon">// LIVE</span>
+        <span className="tag text-neon">// HUB</span>
       </Link>
 
       <div className="flex items-center gap-2">

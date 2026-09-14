@@ -5,18 +5,55 @@ import { SectionBar } from "@/components/SectionBar";
 import { ResponsiveAd } from "@/ads/AdBanner";
 
 export const metadata: Metadata = {
-  title: "About ESPN Live — Free Sports Streaming Platform",
+  title: "About SportVibeHub — Free Sports Streaming Platform",
   description:
-    "ESPN Live is a free sports streaming aggregator. Watch live football, basketball, tennis, cricket, and more from multiple HD stream sources worldwide.",
-  alternates: { canonical: "https://espnlive.online/about" },
+    "SportVibeHub is a free sports streaming aggregator. Watch live football, basketball, tennis, cricket, and more from multiple HD stream sources worldwide.",
+  alternates: { canonical: "https://sportvibehub.online/about" },
   openGraph: {
     type: "website",
-    url: "https://espnlive.online/about",
-    title: "About ESPN Live",
+    url: "https://sportvibehub.online/about",
+    title: "About SportVibeHub",
     description:
       "Free live sports streaming aggregator — football, basketball, cricket and more in HD.",
-    siteName: "ESPN Live",
+    siteName: "SportVibeHub",
   },
+};
+
+const FAQS = [
+  {
+    q: "Is SportVibeHub really free?",
+    a: "Yes. Every stream is free. No signup, no paywall, no subscription. Ads keep the platform running.",
+  },
+  {
+    q: "Do I need to create an account?",
+    a: "No account required. Open a match, pick a mirror, hit play.",
+  },
+  {
+    q: "Does SportVibeHub host the streams?",
+    a: "No. SportVibeHub is an index. All video is served by independent third-party providers. We link to public embed URLs.",
+  },
+  {
+    q: "Which sports can I watch live?",
+    a: "Football, basketball, tennis, cricket, American football, hockey, baseball, motor sports (F1, MotoGP), MMA/UFC, rugby, golf, darts and more.",
+  },
+  {
+    q: "What if a stream is not working?",
+    a: "Every match has multiple mirror sources. Pick a different mirror. If all fail, the broadcast may not have started or has ended.",
+  },
+  {
+    q: "How do I report a copyright issue (DMCA)?",
+    a: "Use the contact form with the offending URL and proof of rights. We respond within 24 hours.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
 };
 
 const PILLARS = [
@@ -64,6 +101,10 @@ const SPORTS_COVERED = [
 export default function AboutPage() {
   return (
     <div className="px-5 py-8 sm:px-8 lg:px-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="grid gap-12 border-b border-line pb-16 lg:grid-cols-[1.4fr_1fr]">
         <div>
           <p className="mono text-[10px] uppercase tracking-[0.28em] text-neon">
@@ -75,7 +116,7 @@ export default function AboutPage() {
         </div>
         <div className="flex flex-col justify-end">
           <p className="display text-2xl font-bold leading-[1.25] text-fg">
-            ESPN Live is a free, ads-supported broadcast index. We link to the
+            SportVibeHub is a free, ads-supported broadcast index. We link to the
             wire. We don’t host it.
           </p>
           <p className="mt-4 text-fg-mid">
@@ -162,7 +203,7 @@ export default function AboutPage() {
             title="No hosting, no storage"
           />
           <p className="text-fg-mid">
-            ESPN Live does not host any video content. All streams linked are
+            SportVibeHub does not host any video content. All streams linked are
             provided by independent third parties. For official broadcasts,
             please use licensed streaming services. This site is for
             entertainment purposes only.
@@ -185,6 +226,21 @@ export default function AboutPage() {
             [ Contact desk ]
           </Link>
         </div>
+      </section>
+
+      <section className="border-t border-line py-16">
+        <SectionBar code="05" eyebrow="FAQ" title="Common questions" />
+        <dl className="divide-y divide-line rounded-panel border border-line bg-panel">
+          {FAQS.map((f) => (
+            <div
+              key={f.q}
+              className="grid gap-2 px-6 py-5 sm:grid-cols-[1fr_2fr] sm:gap-8"
+            >
+              <dt className="display text-[15px] font-bold text-fg">{f.q}</dt>
+              <dd className="text-sm leading-relaxed text-fg-mid">{f.a}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <div className="mt-8 rounded-panel border border-line-2 bg-panel py-3">
