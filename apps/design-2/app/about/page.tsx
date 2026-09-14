@@ -5,16 +5,16 @@ import { ResponsiveAd } from '@/components/ads/AdBanner'
 import { SectionHeader } from '@/components/SectionHeader'
 
 export const metadata: Metadata = {
-  title: 'About ESPN Live — Free Sports Streaming Platform',
+  title: 'About SportPulseTV — Free Sports Streaming Platform',
   description:
-    'ESPN Live is a free sports streaming aggregator. Watch live football, basketball, tennis, cricket and more from multiple HD stream sources worldwide.',
-  alternates: { canonical: 'https://espnlive.online/about' },
+    'SportPulseTV is a free sports streaming aggregator. Watch live football, basketball, tennis, cricket and more from multiple HD stream sources worldwide.',
+  alternates: { canonical: 'https://sportpulsetv.online/about' },
   openGraph: {
     type: 'website',
-    url: 'https://espnlive.online/about',
-    title: 'About ESPN Live',
+    url: 'https://sportpulsetv.online/about',
+    title: 'About SportPulseTV',
     description: 'Free live sports streaming aggregator — football, basketball, cricket and more in HD.',
-    siteName: 'ESPN Live',
+    siteName: 'SportPulseTV',
   },
 }
 
@@ -24,6 +24,43 @@ const features = [
   { code: '03', icon: Shield, title: 'HD First', body: 'Multiple stream sources per fixture so you always land on a working HD feed.' },
   { code: '04', icon: Users, title: 'No Sign-Up', body: 'Watch any match instantly — no account, no subscription, no paywall.' },
 ]
+
+const FAQS = [
+  {
+    q: 'Is SportPulseTV really free?',
+    a: 'Yes. Every stream on SportPulseTV is free to watch. No signup, no paywall, no subscription. Ads keep the service running.',
+  },
+  {
+    q: 'Do I need an account?',
+    a: 'No. Open a match, pick a mirror, hit play.',
+  },
+  {
+    q: 'Does SportPulseTV host the streams?',
+    a: 'No. SportPulseTV is an index. All video is served by independent third-party providers. We link to public embed URLs.',
+  },
+  {
+    q: 'Which sports can I watch live?',
+    a: 'Football, basketball, tennis, cricket, American football, hockey, baseball, motor sports (F1, MotoGP), MMA/UFC, rugby, golf, darts and more.',
+  },
+  {
+    q: 'What if a stream is not working?',
+    a: 'Each match has multiple mirror sources. Pick a different mirror. If all fail, the broadcast may not have started or has ended.',
+  },
+  {
+    q: 'How do I report a copyright issue (DMCA)?',
+    a: 'Use the contact form with the offending URL and proof of rights. We respond within 24 hours.',
+  },
+]
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQS.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+}
 
 const SPORTS_LIST = [
   'Football / Soccer',
@@ -43,6 +80,10 @@ const SPORTS_LIST = [
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="glass-strong relative mb-12 overflow-hidden rounded-[32px] p-8 sm:p-12">
         <div className="pointer-events-none absolute -top-20 -left-20 h-64 w-64 rounded-full bg-[color:var(--color-neon-cyan)]/15 blur-[100px]" />
         <div className="pointer-events-none absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-[color:var(--color-neon-magenta)]/15 blur-[100px]" />
@@ -56,7 +97,7 @@ export default function AboutPage() {
             index for <span className="text-[color:var(--color-neon-cyan)]">every</span> sport.
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-[color:var(--color-ink-2)]">
-            ESPN Live is a free live sports aggregator. We do not host video. We index public embed feeds
+            SportPulseTV is a free live sports aggregator. We do not host video. We index public embed feeds
             from third-party providers and present them in one fast, ad-supported interface.
           </p>
           <div className="mt-8 flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-ink-3)]">
@@ -107,10 +148,10 @@ export default function AboutPage() {
       <div className="space-y-8 text-[color:var(--color-ink-2)] leading-relaxed">
         <section className="glass rounded-[22px] p-6">
           <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-ink-3)]">
-            &mdash;&nbsp; What&nbsp;is&nbsp;ESPN&nbsp;Live?
+            &mdash;&nbsp; What&nbsp;is&nbsp;SportPulseTV?
           </p>
           <p className="text-sm">
-            ESPN Live (espnlive.online) is a sports streaming aggregator that indexes and links to live
+            SportPulseTV (sportpulsetv.online) is a sports streaming aggregator that indexes and links to live
             sports streams from third-party providers. We do not host, upload, or store any video content.
             All streams are sourced from publicly available third-party services.
           </p>
@@ -138,9 +179,9 @@ export default function AboutPage() {
             &mdash;&nbsp; Legal&nbsp;Disclaimer
           </p>
           <p className="text-sm">
-            ESPN Live does not host any video content. All streams linked are provided by independent
+            SportPulseTV does not host any video content. All streams linked are provided by independent
             third parties. We are not responsible for the content of external sites. For official
-            broadcasts please use licensed streaming services. ESPN Live is for entertainment and
+            broadcasts please use licensed streaming services. SportPulseTV is for entertainment and
             informational purposes only.
           </p>
         </section>
@@ -156,6 +197,16 @@ export default function AboutPage() {
         >
           Open contact channel &rarr;
         </Link>
+      </div>
+
+      <SectionHeader code="03" eyebrow="FAQ" title="Common Questions" />
+      <div className="glass mt-6 divide-y divide-white/6 rounded-[22px] px-6">
+        {FAQS.map((f) => (
+          <div key={f.q} className="py-5">
+            <p className="text-base font-semibold text-[color:var(--color-ink-1)]">{f.q}</p>
+            <p className="mt-2 text-sm leading-relaxed text-[color:var(--color-ink-2)]">{f.a}</p>
+          </div>
+        ))}
       </div>
 
       <div className="mt-10">

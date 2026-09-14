@@ -53,7 +53,7 @@ export function Navbar() {
               On&nbsp;Air
             </span>
             <span aria-hidden className="h-3 w-px bg-white/10" />
-            <span className="hidden sm:inline">espnlive.online &middot; broadcast&nbsp;#4271</span>
+            <span className="hidden sm:inline">sportpulsetv.online &middot; broadcast&nbsp;#4271</span>
           </div>
           <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-ink-3)] tabular-nums">
             <span suppressHydrationWarning>{clock || '--:--'}</span>
@@ -74,16 +74,20 @@ export function Navbar() {
       >
         <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 sm:px-6">
           {/* Wordmark */}
-          <Link href="/" className="group flex items-center gap-3">
+          <Link
+            href="/"
+            aria-label="SportPulseTV home"
+            className="group flex items-center gap-3"
+          >
             <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-[color:var(--color-neon-magenta)]/30 to-[color:var(--color-neon-cyan)]/30">
               <Radio className="h-4 w-4 text-[color:var(--color-ink-1)]" />
             </span>
             <div className="flex flex-col leading-tight">
               <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-[color:var(--color-ink-3)]">
-                ESPN
+                SportPulse
               </span>
               <span className="text-sm font-bold uppercase tracking-[0.18em] text-[color:var(--color-ink-1)]">
-                Live<span className="text-[color:var(--color-neon-cyan)]">.</span>
+                TV<span className="text-[color:var(--color-neon-cyan)]">.</span>
               </span>
             </div>
           </Link>

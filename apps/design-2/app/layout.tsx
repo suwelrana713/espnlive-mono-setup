@@ -20,56 +20,63 @@ const jet = JetBrains_Mono({
   display: 'swap',
 })
 
-const BASE_URL = 'https://espnlive.online'
+const BASE_URL = 'https://sportpulsetv.online'
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'ESPN Live — Free Live Sports Streaming Online',
-    template: '%s | ESPN Live',
+    default: 'SportPulseTV — Feel Every Play. Live Sports Streaming Free.',
+    template: '%s | SportPulseTV',
   },
   description:
-    'Watch live football, basketball, tennis, cricket and more sports online free in HD. Live scores, match streams, and upcoming fixtures — all in one place.',
+    'Feel every play. Watch live football, basketball, tennis, cricket, F1, MMA and more in HD — free, no signup, no paywall. Live scores, match streams and fixtures on the pulse of sport.',
   keywords: [
-    'live sports streaming',
-    'watch football live',
-    'free sports stream',
-    'live football stream',
+    'sportpulsetv',
+    'sport pulse tv',
+    'live sports streaming free',
+    'watch football live free',
+    'free live football stream HD',
     'soccer live stream free',
-    'watch match online',
+    'watch match online free',
     'live sports online',
-    'football match today',
-    'basketball live stream',
-    'sports streaming site',
-    'HD sports stream',
-    'watch cricket live',
+    'football match today live',
+    'basketball live stream free',
+    'cricket live stream',
+    'F1 live stream free',
+    'MMA live stream',
+    'tennis live stream',
+    'sports streaming site no signup',
+    'live sports TV free',
   ],
-  authors: [{ name: 'ESPN Live', url: BASE_URL }],
-  creator: 'ESPN Live',
-  publisher: 'ESPN Live',
+  authors: [{ name: 'SportPulseTV', url: BASE_URL }],
+  creator: 'SportPulseTV',
+  publisher: 'SportPulseTV',
   category: 'Sports',
+  applicationName: 'SportPulseTV',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: BASE_URL,
-    siteName: 'ESPN Live',
-    title: 'ESPN Live — Free Live Sports Streaming Online',
+    siteName: 'SportPulseTV',
+    title: 'SportPulseTV — Feel Every Play. Live Sports Streaming Free.',
     description:
-      'Watch live football, basketball, tennis, cricket and more sports free in HD. Live scores, streams and fixtures.',
+      'Live football, basketball, tennis, cricket and more in HD. Free, no signup.',
     images: [
       {
-        url: '/logo.png',
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'ESPN Live — Free Live Sports Streaming',
+        alt: 'SportPulseTV — Feel Every Play',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ESPN Live — Free Live Sports Streaming',
-    description: 'Watch live football, basketball, cricket and more free in HD.',
-    images: ['/logo.png'],
+    site: '@sportpulsetv',
+    creator: '@sportpulsetv',
+    title: 'SportPulseTV — Feel Every Play',
+    description: 'Live football, basketball, cricket and more in HD — free.',
+    images: ['/opengraph-image'],
   },
   robots: {
     index: true,
@@ -85,15 +92,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: BASE_URL,
   },
-  icons: {
-    icon: [{ url: '/favicon.png', type: 'image/png' }],
-    apple: '/favicon.png',
-    shortcut: '/favicon.png',
-  },
+  manifest: '/manifest.webmanifest',
 }
 
 export const viewport: Viewport = {
-  themeColor: '#08060f',
+  themeColor: '#00E5FF',
   colorScheme: 'dark',
   width: 'device-width',
   initialScale: 1,
@@ -102,10 +105,12 @@ export const viewport: Viewport = {
 const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'ESPN Live',
+  name: 'SportPulseTV',
+  alternateName: 'SportPulseTV.online',
   url: BASE_URL,
   description:
-    'Free live sports streaming — football, basketball, tennis, cricket and more in HD.',
+    'Free live sports streaming — football, basketball, tennis, cricket, F1, MMA and more in HD. Feel every play.',
+  inLanguage: 'en',
   potentialAction: {
     '@type': 'SearchAction',
     target: {
@@ -119,13 +124,15 @@ const websiteJsonLd = {
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'ESPN Live',
+  name: 'SportPulseTV',
   url: BASE_URL,
   logo: `${BASE_URL}/logo.png`,
+  slogan: 'Feel every play.',
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
     url: `${BASE_URL}/contact`,
+    availableLanguage: ['English'],
   },
   sameAs: [],
 }

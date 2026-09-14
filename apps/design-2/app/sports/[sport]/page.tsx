@@ -17,7 +17,7 @@ interface Props {
   params: Promise<{ sport: string }>
 }
 
-const BASE_URL = 'https://espnlive.online'
+const BASE_URL = 'https://sportpulsetv.online'
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { sport } = await params
@@ -34,14 +34,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: sportUrl,
       title,
       description,
-      siteName: 'ESPN Live',
-      images: [{ url: '/logo.png', width: 1200, height: 630, alt: `Live ${name} Streams` }],
+      siteName: 'SportPulseTV',
+      images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: `Live ${name} Streams` }],
     },
     twitter: { card: 'summary_large_image', title, description },
   }
 }
 
 export const revalidate = 60
+export const dynamicParams = true
+
+const PRERENDER_SPORTS = [
+  'football',
+  'basketball',
+  'american-football',
+  'hockey',
+  'baseball',
+  'motor-sports',
+  'fight',
+  'tennis',
+  'cricket',
+  'rugby',
+  'golf',
+  'darts',
+]
+
+export function generateStaticParams() {
+  return PRERENDER_SPORTS.map((sport) => ({ sport }))
+}
 
 async function MatchesList({ sport }: { sport: string }) {
   const matches = await getMatchesBySport(sport).catch(() => [])
@@ -138,8 +158,22 @@ export default async function SportPage({ params }: Props) {
     sportData?.name ??
     sport.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Channels', item: `${BASE_URL}/sports` },
+      { '@type': 'ListItem', position: 3, name, item: `${BASE_URL}/sports/${sport}` },
+    ],
+  }
+
   return (
     <div className="mx-auto max-w-[1400px] px-4 pb-16 pt-6 sm:px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <nav
         aria-label="Breadcrumb"
         className="mb-6 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-ink-3)]"

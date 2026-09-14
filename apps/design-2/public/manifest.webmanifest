@@ -1,0 +1,26 @@
+{
+  "name": "SportPulseTV — Watch Live Sports Free",
+  "short_name": "SportPulseTV",
+  "description": "Feel every play. Watch football, basketball, cricket, F1, MMA and more live in HD — free.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#08060f",
+  "theme_color": "#00E5FF",
+  "orientation": "portrait",
+  "categories": ["sports", "entertainment", "news"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icon",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

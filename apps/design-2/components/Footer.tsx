@@ -39,15 +39,15 @@ export function Footer() {
                 <Radio className="h-4 w-4 text-[color:var(--color-ink-1)]" />
               </span>
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-[color:var(--color-ink-3)]">ESPN</p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-[color:var(--color-ink-3)]">SportPulse</p>
                 <p className="text-lg font-bold uppercase tracking-[0.2em] text-[color:var(--color-ink-1)]">
-                  Live<span className="text-[color:var(--color-neon-cyan)]">.</span>
+                  TV<span className="text-[color:var(--color-neon-cyan)]">.</span>
                 </p>
               </div>
             </div>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-[color:var(--color-ink-2)]">
-              A free broadcast index for live sport. We do not host video &mdash; we aggregate publicly available
-              embed feeds from third-party providers.
+              Feel every play. A free broadcast index for live sport &mdash; we do not host video, we aggregate publicly
+              available embed feeds from third-party providers.
             </p>
             <div className="mt-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.3em] text-[color:var(--color-ink-3)]">
               <Signal className="h-3 w-3 text-[color:var(--color-neon-cyan)]" />

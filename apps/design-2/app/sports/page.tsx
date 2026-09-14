@@ -11,13 +11,13 @@ import { AdNativeBanner } from '@/components/ads/AdNativeBanner'
 export const metadata: Metadata = {
   title: 'Channels',
   description: 'Browse all sport channels and watch live matches.',
-  alternates: { canonical: 'https://espnlive.online/sports' },
+  alternates: { canonical: 'https://sportpulsetv.online/sports' },
   openGraph: {
     type: 'website',
-    url: 'https://espnlive.online/sports',
-    title: 'All Channels — ESPN Live',
+    url: 'https://sportpulsetv.online/sports',
+    title: 'All Channels — SportPulseTV',
     description: 'The full sport catalogue with live match counts.',
-    siteName: 'ESPN Live',
+    siteName: 'SportPulseTV',
   },
 }
 

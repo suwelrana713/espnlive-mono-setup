@@ -8,13 +8,13 @@ import { AdNativeBanner } from '@/components/ads/AdNativeBanner'
 export const metadata: Metadata = {
   title: 'Schedule',
   description: 'Full sports match schedule. See upcoming and live events by date.',
-  alternates: { canonical: 'https://espnlive.online/schedule' },
+  alternates: { canonical: 'https://sportpulsetv.online/schedule' },
   openGraph: {
     type: 'website',
-    url: 'https://espnlive.online/schedule',
-    title: 'Schedule — ESPN Live',
+    url: 'https://sportpulsetv.online/schedule',
+    title: 'Schedule — SportPulseTV',
     description: 'Daily broadcast schedule across every sport.',
-    siteName: 'ESPN Live',
+    siteName: 'SportPulseTV',
   },
 }
 

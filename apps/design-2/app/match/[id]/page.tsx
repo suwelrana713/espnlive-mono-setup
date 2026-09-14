@@ -19,7 +19,7 @@ interface Props {
   searchParams: Promise<{ cat?: string }>
 }
 
-const BASE_URL = 'https://espnlive.online'
+const BASE_URL = 'https://sportpulsetv.online'
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params
@@ -52,10 +52,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: matchUrl,
       title,
       description,
-      siteName: 'ESPN Live',
+      siteName: 'SportPulseTV',
       images: match.poster
         ? [{ url: match.poster, alt: title }]
-        : [{ url: '/logo.png', width: 1200, height: 630, alt: title }],
+        : [{ url: '/opengraph-image', width: 1200, height: 630, alt: title }],
     },
     twitter: { card: 'summary_large_image', title, description },
   }
@@ -92,7 +92,20 @@ export default async function MatchPage({ params, searchParams }: Props) {
       awayTeam: { '@type': 'SportsTeam', name: match.teams.away.name },
     }),
     location: { '@type': 'VirtualLocation', url: matchUrl },
-    organizer: { '@type': 'Organization', name: 'ESPN Live', url: BASE_URL },
+    organizer: { '@type': 'Organization', name: 'SportPulseTV', url: BASE_URL },
+    isAccessibleForFree: true,
+  }
+
+  const sportSlug = match.category
+  const sportName = sportSlug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: BASE_URL },
+      { '@type': 'ListItem', position: 2, name: sportName, item: `${BASE_URL}/sports/${sportSlug}` },
+      { '@type': 'ListItem', position: 3, name: match.title, item: matchUrl },
+    ],
   }
 
   const home = match.teams?.home.name
@@ -103,6 +116,10 @@ export default async function MatchPage({ params, searchParams }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(sportsEventJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       <Link

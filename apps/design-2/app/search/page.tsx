@@ -5,13 +5,13 @@ import { ResponsiveAd } from '@/components/ads/AdBanner'
 export const metadata: Metadata = {
   title: 'Search',
   description: 'Search for matches, teams, and sports.',
-  alternates: { canonical: 'https://espnlive.online/search' },
+  alternates: { canonical: 'https://sportpulsetv.online/search' },
   openGraph: {
     type: 'website',
-    url: 'https://espnlive.online/search',
-    title: 'Search — ESPN Live',
+    url: 'https://sportpulsetv.online/search',
+    title: 'Search — SportPulseTV',
     description: 'Find any match, team or sport across the network.',
-    siteName: 'ESPN Live',
+    siteName: 'SportPulseTV',
   },
 }
 
