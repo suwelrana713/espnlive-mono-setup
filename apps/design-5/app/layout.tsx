@@ -167,12 +167,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://streamed.pk" />
       </head>
       <body className="min-h-dvh bg-bg text-ink antialiased overflow-x-hidden">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-[#FF6B00] focus:px-3 focus:py-2 focus:text-xs focus:font-bold focus:uppercase focus:tracking-widest focus:text-white"
-        >
-          Skip to main
-        </a>
         <Providers>
           <TopBar />
           <div className="mx-auto flex w-full max-w-[1440px] gap-6 px-4 py-6 sm:px-6 lg:gap-8 lg:px-8">
