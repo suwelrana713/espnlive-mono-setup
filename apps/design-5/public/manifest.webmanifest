@@ -1,0 +1,17 @@
+{
+  "name": "FanZoneLive — Where Fans Watch Live",
+  "short_name": "FanZoneLive",
+  "description": "Where fans watch live. Watch football, basketball, cricket, F1, MMA and more in HD — free.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#FF6B00",
+  "orientation": "portrait",
+  "categories": ["sports", "entertainment", "news"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    { "src": "/icon", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-icon", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Manrope, IBM_Plex_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { TopBar } from "@/components/TopBar";
@@ -25,57 +26,64 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const BASE_URL = "https://espnlive.online";
+const BASE_URL = "https://fanzonelive.online";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "ESPN Live — Free Live Sports Streaming Online",
-    template: "%s — ESPN Live",
+    default: "FanZoneLive — Where Fans Watch Live Sports Free",
+    template: "%s — FanZoneLive",
   },
   description:
-    "Watch live football, basketball, tennis, cricket and more sports online free in HD. Live scores, match streams, and upcoming fixtures — all in one place.",
+    "Where fans watch live. Free HD streams of football, basketball, tennis, cricket, F1, MMA and more. Live scores, fixtures, mirrors — no signup, no paywall, one fan zone.",
   keywords: [
-    "live sports streaming",
-    "watch football live",
-    "free sports stream",
-    "live football stream",
+    "fanzonelive",
+    "fan zone live",
+    "live sports streaming free",
+    "watch football live free",
+    "free live football stream HD",
     "soccer live stream free",
-    "watch match online",
+    "watch match online free",
     "live sports online",
-    "football match today",
-    "basketball live stream",
-    "sports streaming site",
-    "HD sports stream",
-    "watch cricket live",
+    "football match today live",
+    "basketball live stream free",
+    "cricket live stream",
+    "F1 live stream free",
+    "MMA live stream",
+    "tennis live stream",
+    "sports fan streaming",
+    "live scores and streams",
   ],
-  authors: [{ name: "ESPN Live", url: BASE_URL }],
-  creator: "ESPN Live",
-  publisher: "ESPN Live",
+  authors: [{ name: "FanZoneLive", url: BASE_URL }],
+  creator: "FanZoneLive",
+  publisher: "FanZoneLive",
   category: "Sports",
+  applicationName: "FanZoneLive",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: BASE_URL,
-    siteName: "ESPN Live",
-    title: "ESPN Live — Free Live Sports Streaming Online",
+    siteName: "FanZoneLive",
+    title: "FanZoneLive — Where Fans Watch Live Sports Free",
     description:
-      "Watch live football, basketball, tennis, cricket and more sports free in HD.",
+      "Where fans watch live. Football, basketball, tennis, cricket and more in HD. Free, no signup.",
     images: [
       {
-        url: "/logo.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "ESPN Live — Free Live Sports Streaming",
+        alt: "FanZoneLive — Where fans watch live",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ESPN Live — Free Live Sports Streaming",
+    site: "@fanzonelive",
+    creator: "@fanzonelive",
+    title: "FanZoneLive — Where Fans Watch Live Sports Free",
     description:
-      "Watch live football, basketball, cricket and more free in HD.",
-    images: ["/og-image.png"],
+      "Where fans watch live. Football, basketball, cricket and more in HD — free.",
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
@@ -89,15 +97,11 @@ export const metadata: Metadata = {
     },
   },
   alternates: { canonical: BASE_URL },
-  icons: {
-    icon: [{ url: "/favicon.png", type: "image/png" }],
-    apple: "/favicon.png",
-    shortcut: "/favicon.png",
-  },
+  manifest: "/manifest.webmanifest",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f5f7fa",
+  themeColor: "#FF6B00",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
@@ -106,10 +110,12 @@ export const viewport: Viewport = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "ESPN Live",
+  name: "FanZoneLive",
+  alternateName: "FanZoneLive.online",
   url: BASE_URL,
   description:
-    "Free live sports streaming — football, basketball, tennis, cricket and more in HD.",
+    "Where fans watch live. Free live sports streaming — football, basketball, tennis, cricket, F1, MMA and more in HD.",
+  inLanguage: "en",
   potentialAction: {
     "@type": "SearchAction",
     target: {
@@ -123,13 +129,15 @@ const websiteJsonLd = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "ESPN Live",
+  name: "FanZoneLive",
   url: BASE_URL,
   logo: `${BASE_URL}/logo.png`,
+  slogan: "Where fans watch live.",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer support",
     url: `${BASE_URL}/contact`,
+    availableLanguage: ["English"],
   },
   sameAs: [],
 };
@@ -146,15 +154,6 @@ export default function RootLayout({
     >
       <head>
         <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-P6B38HG3');`,
-          }}
-        />
-        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
@@ -168,16 +167,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <link rel="dns-prefetch" href="https://streamed.pk" />
       </head>
       <body className="min-h-dvh bg-bg text-ink antialiased overflow-x-hidden">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-[#FF6B00] focus:px-3 focus:py-2 focus:text-xs focus:font-bold focus:uppercase focus:tracking-widest focus:text-white"
+        >
+          Skip to main
+        </a>
         <Providers>
           <TopBar />
           <div className="mx-auto flex w-full max-w-[1440px] gap-6 px-4 py-6 sm:px-6 lg:gap-8 lg:px-8">
             <LeftRail />
-            <main className="min-w-0 flex-1 pb-24 lg:pb-8">{children}</main>
+            <main id="main" className="min-w-0 flex-1 pb-24 lg:pb-8">
+              {children}
+            </main>
           </div>
           <MobileTabs />
           <SideRailAds />
         </Providers>
         <ClickGatedAds />
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P6B38HG3');`,
+          }}
+        />
       </body>
     </html>
   );

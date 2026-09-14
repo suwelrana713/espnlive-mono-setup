@@ -5,18 +5,55 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { ResponsiveAd } from "@/ads/AdBanner";
 
 export const metadata: Metadata = {
-  title: "About ESPN Live — Free Sports Streaming Platform",
+  title: "About FanZoneLive — Free Sports Streaming Platform",
   description:
-    "ESPN Live is a free sports streaming aggregator. Watch live football, basketball, tennis, cricket, and more from multiple HD stream sources worldwide.",
-  alternates: { canonical: "https://espnlive.online/about" },
+    "FanZoneLive is a free sports streaming aggregator. Watch live football, basketball, tennis, cricket, and more from multiple HD stream sources worldwide.",
+  alternates: { canonical: "https://fanzonelive.online/about" },
   openGraph: {
     type: "website",
-    url: "https://espnlive.online/about",
-    title: "About ESPN Live",
+    url: "https://fanzonelive.online/about",
+    title: "About FanZoneLive",
     description:
       "Free live sports streaming aggregator — football, basketball, cricket and more in HD.",
-    siteName: "ESPN Live",
+    siteName: "FanZoneLive",
   },
+};
+
+const FAQS = [
+  {
+    q: "Is FanZoneLive really free?",
+    a: "Yes. Every stream is free. No signup, no paywall, no subscription. Ads keep the platform running.",
+  },
+  {
+    q: "Do I need to create an account?",
+    a: "No account required. Open a match, pick a mirror, hit play.",
+  },
+  {
+    q: "Does FanZoneLive host the video?",
+    a: "No. FanZoneLive is an index. All video is served by independent third-party providers. We link to public embed URLs.",
+  },
+  {
+    q: "Which sports can I watch live?",
+    a: "Football, basketball, tennis, cricket, American football, hockey, baseball, motor sports (F1, MotoGP), MMA/UFC, rugby, golf, darts and more.",
+  },
+  {
+    q: "What if a stream is not working?",
+    a: "Every match has multiple mirror sources. Pick a different mirror. If all fail, the broadcast may not have started or has ended.",
+  },
+  {
+    q: "How do I report a copyright issue (DMCA)?",
+    a: "Use the contact form with the offending URL and proof of rights. We respond within 24 hours.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
 };
 
 const STATS = [
@@ -67,6 +104,10 @@ const SPORTS_COVERED = [
 export default function AboutPage() {
   return (
     <div className="space-y-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <header>
         <span className="rounded-pill bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary">
           About
@@ -75,7 +116,7 @@ export default function AboutPage() {
           A modern sports hub for live scores &amp; streams.
         </h1>
         <p className="mt-4 max-w-2xl text-[15px] text-muted">
-          ESPN Live is a free, ads-supported broadcast index. We link to the
+          FanZoneLive is a free, ads-supported broadcast index. We link to the
           wire — we don’t host video. Every mirror, every sport, one page.
         </p>
       </header>
@@ -155,7 +196,7 @@ export default function AboutPage() {
         <div className="card p-6">
           <SectionTitle title="Legal notice" accent="live" />
           <p className="text-[14px] text-muted">
-            ESPN Live does not host any video content. All streams linked are
+            FanZoneLive does not host any video content. All streams linked are
             provided by independent third parties. For official broadcasts,
             please use licensed streaming services.
           </p>
@@ -182,6 +223,27 @@ export default function AboutPage() {
         >
           Contact us
         </Link>
+      </section>
+
+      <section>
+        <SectionTitle
+          title="Frequently asked"
+          subtitle="Common questions from fans"
+          accent="primary"
+        />
+        <dl className="card divide-y divide-line/60">
+          {FAQS.map((f) => (
+            <div
+              key={f.q}
+              className="grid gap-2 px-5 py-4 sm:grid-cols-[1fr_2fr] sm:gap-6"
+            >
+              <dt className="display text-[14px] font-extrabold text-ink">
+                {f.q}
+              </dt>
+              <dd className="text-[13px] leading-relaxed text-muted">{f.a}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <div className="rounded-md border border-line bg-surface py-3">

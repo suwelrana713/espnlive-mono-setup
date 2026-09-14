@@ -17,16 +17,20 @@ export function TopBar() {
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-surface/95 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-[1440px] items-center gap-3 sm:gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2">
+        <Link
+          href="/"
+          aria-label="FanZoneLive home"
+          className="flex items-center gap-2"
+        >
           <span className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-white">
             <Zap className="h-4 w-4" strokeWidth={2.4} fill="currentColor" />
           </span>
           <div className="flex flex-col leading-none">
             <span className="display text-[16px] font-extrabold tracking-tight text-ink">
-              ESPN Live
+              FanZoneLive
             </span>
             <span className="mono text-[11px] uppercase tracking-[0.2em] text-muted">
-              Sports Hub
+              Where fans watch
             </span>
           </div>
         </Link>

@@ -32,7 +32,11 @@ async function Feature() {
   ]);
   const liveMatches = live.status === "fulfilled" ? live.value : [];
   const popularMatches = popular.status === "fulfilled" ? popular.value : [];
-  const featured = [...liveMatches, ...popularMatches];
+  const featured = [
+    ...new Map(
+      [...liveMatches, ...popularMatches].map((m) => [m.id, m]),
+    ).values(),
+  ];
   if (!featured.length) return null;
   return <ScoreCardHero matches={featured.slice(0, 8)} />;
 }
@@ -71,7 +75,7 @@ async function TrendingBoard() {
   if (!matches.length) return <EmptyState title="No trending matches" />;
   return (
     <div className="card divide-y divide-line/60">
-      {matches.slice(0, 8).map((m, i) => (
+      {matches.slice(0, 6).map((m, i) => (
         <ScoreRow key={m.id} match={m} index={i} />
       ))}
     </div>
@@ -86,7 +90,7 @@ async function UpcomingBoard() {
   if (!upcoming.length) return <EmptyState title="No upcoming matches" />;
   return (
     <div className="card divide-y divide-line/60">
-      {upcoming.slice(0, 8).map((m, i) => (
+      {upcoming.slice(0, 6).map((m, i) => (
         <ScoreRow key={m.id} match={m} index={i} />
       ))}
     </div>
@@ -108,8 +112,8 @@ async function ChannelBoard() {
     tennis: tennis.status === "fulfilled" ? tennis.value.length : 0,
   };
   return (
-    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      {allSports.slice(0, 9).map((sport, i) => (
+    <div className="grid grid-cols-1 gap-3">
+      {allSports.slice(0, 8).map((sport, i) => (
         <SportTile
           key={sport.id}
           sport={sport}

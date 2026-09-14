@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getLiveMatches, getPopularMatches } from "@/lib/api";
+import { getMatchStatus } from "@/lib/types";
 
-const BASE_URL = "https://espnlive.online";
+const BASE_URL = "https://fanzonelive.online";
 
 const SPORTS = [
   "football",
@@ -21,42 +22,19 @@ const SPORTS = [
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const now = new Date();
+
   const staticRoutes: MetadataRoute.Sitemap = [
-    {
-      url: BASE_URL,
-      lastModified: new Date(),
-      changeFrequency: "hourly",
-      priority: 1.0,
-    },
-    {
-      url: `${BASE_URL}/sports`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/schedule`,
-      lastModified: new Date(),
-      changeFrequency: "hourly",
-      priority: 0.85,
-    },
-    {
-      url: `${BASE_URL}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${BASE_URL}/contact`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.4,
-    },
+    { url: BASE_URL, lastModified: now, changeFrequency: "hourly", priority: 1.0 },
+    { url: `${BASE_URL}/sports`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
+    { url: `${BASE_URL}/schedule`, lastModified: now, changeFrequency: "hourly", priority: 0.85 },
+    { url: `${BASE_URL}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${BASE_URL}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
   ];
 
   const sportRoutes: MetadataRoute.Sitemap = SPORTS.map((sport) => ({
     url: `${BASE_URL}/sports/${sport}`,
-    lastModified: new Date(),
+    lastModified: now,
     changeFrequency: "hourly" as const,
     priority: 0.8,
   }));
@@ -70,10 +48,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const popular = popularResult.status === "fulfilled" ? popularResult.value : [];
   const dedupedMatches = [
     ...new Map([...live, ...popular].map((m) => [m.id, m])).values(),
-  ];
+  ].filter((m) => getMatchStatus(m.date) !== "finished");
 
   const matchRoutes: MetadataRoute.Sitemap = dedupedMatches.map((match) => ({
-    url: `${BASE_URL}/match/${match.id}`,
+    url: `${BASE_URL}/match/${encodeURIComponent(match.id)}`,
     lastModified: new Date(match.date),
     changeFrequency: "hourly" as const,
     priority: match.popular ? 0.9 : 0.7,

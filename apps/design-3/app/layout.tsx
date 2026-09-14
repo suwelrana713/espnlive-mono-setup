@@ -166,12 +166,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://streamed.pk" />
       </head>
       <body className="relative flex min-h-dvh flex-col overflow-x-hidden bg-paper text-ink antialiased">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
-        >
-          Skip to main content
-        </a>
         <Providers>
           <SiteHeader />
           <SideRailAds />

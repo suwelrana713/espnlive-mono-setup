@@ -57,27 +57,27 @@ export function SportTile({ sport, matchCount, index = 0 }: SportTileProps) {
     >
       <Link
         href={`/sports/${sport.id}`}
-        className="card flex h-full items-center gap-4 p-4 transition hover:-translate-y-0.5 hover:shadow-lift"
+        className="card flex h-full items-center gap-3 p-3 transition hover:-translate-y-0.5 hover:shadow-lift"
       >
         <span
           className={cn(
-            "flex h-12 w-12 shrink-0 items-center justify-center rounded-md",
+            "flex h-10 w-10 shrink-0 items-center justify-center rounded-md",
             meta.tone,
           )}
         >
           <Icon className="h-5 w-5" strokeWidth={1.75} />
         </span>
         <div className="min-w-0 flex-1">
-          <p className="display text-[15px] font-extrabold leading-tight text-ink">
+          <p className="display truncate text-[14px] font-extrabold leading-tight text-ink">
             {sport.name}
           </p>
           {matchCount !== undefined && (
-            <p className="numeric mt-1 text-[12px] font-semibold text-muted tabular-nums">
+            <p className="numeric mt-0.5 text-[11px] font-semibold text-muted tabular-nums">
               {matchCount} {matchCount === 1 ? "match" : "matches"}
             </p>
           )}
         </div>
-        <span className="mono rounded-pill border border-line bg-surface-2 px-2 py-0.5 text-[10px] font-bold uppercase text-muted">
+        <span className="mono shrink-0 rounded-pill border border-line bg-surface-2 px-2 py-0.5 text-[10px] font-bold uppercase text-muted">
           Open
         </span>
       </Link>
