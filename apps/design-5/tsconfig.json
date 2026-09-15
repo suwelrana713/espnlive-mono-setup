@@ -5,7 +5,7 @@
     "plugins": [{ "name": "next" }],
     "paths": {
       "@/components/*": ["./components/*"],
-      "@/ads/*": ["../../packages/shared/components/ads/*"],
+      "@/ads/*": ["./ads/*"],
       "@/lib/*": ["../../packages/shared/lib/*"],
       "@/hooks/*": ["../../packages/shared/hooks/*"],
       "@/*": ["./*"]
@@ -19,9 +19,7 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     "../../packages/shared/lib/**/*.ts",
-    "../../packages/shared/hooks/**/*.ts",
-    "../../packages/shared/components/ads/**/*.ts",
-    "../../packages/shared/components/ads/**/*.tsx"
+    "../../packages/shared/hooks/**/*.ts"
   ],
   "exclude": ["node_modules", ".next"]
 }
