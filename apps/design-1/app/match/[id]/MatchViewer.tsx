@@ -1,19 +1,19 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import type { Stream } from '@/lib/types'
-import { VideoPlayer } from '@/components/VideoPlayer'
-import { StreamCard } from '@/components/StreamCard'
+import { StreamCard } from "@/components/StreamCard";
+import { VideoPlayer } from "@/components/VideoPlayer";
+import type { Stream } from "@/lib/types";
+import { useState } from "react";
 
 interface MatchViewerProps {
-  streams: Stream[]
-  title: string
+  streams: Stream[];
+  title: string;
 }
 
 export function MatchViewer({ streams, title }: MatchViewerProps) {
-  const [selected, setSelected] = useState(0)
-  const current = streams[selected]
-
+  const [selected, setSelected] = useState(0);
+  const current = streams[selected];
+  console.log({ streams, current, selected }, "streams url");
   return (
     <div className="space-y-4">
       <VideoPlayer embedUrl={current.embedUrl} title={title} />
@@ -35,5 +35,5 @@ export function MatchViewer({ streams, title }: MatchViewerProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,13 +1,12 @@
+import { SideRailAds } from "@/ads/SideRailAds";
+import { MobileTabBar } from "@/components/MobileTabBar";
+import { MobileTopBar } from "@/components/MobileTopBar";
+import { Providers } from "@/components/providers";
+import { SideNav } from "@/components/SideNav";
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, Space_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { Providers } from "@/components/providers";
-import { SideNav } from "@/components/SideNav";
-import { MobileTopBar } from "@/components/MobileTopBar";
-import { MobileTabBar } from "@/components/MobileTabBar";
-import { SideRailAds } from "@/ads/SideRailAds";
-import { ClickGatedAds } from "@/ads/ClickGatedAds";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -171,12 +170,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://streamed.pk" />
       </head>
       <body className="min-h-dvh bg-void text-fg antialiased overflow-x-hidden">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-[#7C3AED] focus:px-3 focus:py-2 focus:text-xs focus:font-bold focus:uppercase focus:tracking-widest focus:text-white"
-        >
-          Skip to main
-        </a>
         <Providers>
           <div className="flex min-h-dvh">
             <SideNav />
@@ -190,7 +183,7 @@ export default function RootLayout({
           <MobileTabBar />
           <SideRailAds />
         </Providers>
-        <ClickGatedAds />
+        {/* <ClickGatedAds /> */}
         <Script
           id="gtm-script"
           strategy="afterInteractive"
