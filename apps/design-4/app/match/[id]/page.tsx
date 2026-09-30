@@ -24,19 +24,37 @@ interface Props {
   searchParams: Promise<{ cat?: string }>;
 }
 
-const BASE_URL = "https://sportvibehub.online";
+const BASE_URL = "https://livesofascore.online";
+
+const CROSS_CHANNELS = [
+  { slug: "football", label: "Football" },
+  { slug: "basketball", label: "Basketball" },
+  { slug: "american-football", label: "NFL" },
+  { slug: "hockey", label: "Hockey" },
+  { slug: "baseball", label: "Baseball" },
+  { slug: "motor-sports", label: "Motor Sports" },
+  { slug: "fight", label: "MMA / UFC" },
+  { slug: "tennis", label: "Tennis" },
+  { slug: "cricket", label: "Cricket" },
+  { slug: "rugby", label: "Rugby" },
+  { slug: "golf", label: "Golf" },
+  { slug: "darts", label: "Darts" },
+];
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const match = await getMatchById(id).catch(() => null);
-  if (!match) return { title: "Match Not Found" };
+  if (!match) {
+    return {
+      title: "Match Not Found",
+      robots: { index: false, follow: true },
+    };
+  }
 
   const homeTeam = match.teams?.home.name;
   const awayTeam = match.teams?.away.name;
-  const title =
-    homeTeam && awayTeam
-      ? `${homeTeam} vs ${awayTeam} Live Stream`
-      : `${match.title} Live Stream`;
+  const headline =
+    homeTeam && awayTeam ? `${homeTeam} vs ${awayTeam}` : match.title;
   const sport = match.category
     .replace(/-/g, " ")
     .replace(/\b\w/g, (c) => c.toUpperCase());
@@ -46,22 +64,35 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     day: "numeric",
     year: "numeric",
   });
+  const title = `${headline} Live Stream & Live Score — ${sport}`;
   const description =
     homeTeam && awayTeam
-      ? `Watch ${homeTeam} vs ${awayTeam} live stream free online in HD. ${sport} match on ${dateStr}. Multiple stream sources available.`
-      : `Watch ${match.title} live stream free online in HD. ${sport} on ${dateStr}.`;
+      ? `Watch ${homeTeam} vs ${awayTeam} live stream free online in HD and follow the live score in real time. ${sport} — ${dateStr}. Multiple free stream mirrors.`
+      : `Watch ${match.title} live stream free online in HD with live score updates. ${sport} — ${dateStr}. Multiple free mirrors.`;
   const matchUrl = `${BASE_URL}/match/${id}`;
+
+  const keywords = [
+    `${headline} live stream`,
+    `${headline} live score`,
+    `${headline} free stream`,
+    `${headline} watch online`,
+    `${sport.toLowerCase()} live stream free`,
+    `${sport.toLowerCase()} live score`,
+    "live sports streaming",
+    "livesofascore",
+  ];
 
   return {
     title,
     description,
+    keywords,
     alternates: { canonical: matchUrl },
     openGraph: {
-      type: "website",
+      type: "video.other",
       url: matchUrl,
       title,
       description,
-      siteName: "SportVibeHub",
+      siteName: "Live Score",
       images: match.poster
         ? [{ url: match.poster, alt: title }]
         : [
@@ -103,24 +134,91 @@ export default async function MatchPage({ params, searchParams }: Props) {
   const relatedMatches = related.filter((m) => m.id !== match.id).slice(0, 3);
 
   const matchUrl = `${BASE_URL}/match/${id}`;
+  const isLive = status === "live";
+
+  const eventStatus =
+    status === "finished"
+      ? "https://schema.org/EventScheduled"
+      : "https://schema.org/EventScheduled";
+
   const sportsEventJsonLd = {
     "@context": "https://schema.org",
     "@type": "SportsEvent",
     name: match.title,
     startDate: new Date(match.date).toISOString(),
+    endDate: new Date(match.date + 2 * 60 * 60 * 1000).toISOString(),
+    eventStatus,
+    eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
     sport: match.category.replace(/-/g, " "),
     url: matchUrl,
+    description: `Watch ${match.title} live stream free and follow live scores in real time.`,
+    ...(match.teams && {
+      homeTeam: { "@type": "SportsTeam", name: match.teams.home.name },
+      awayTeam: { "@type": "SportsTeam", name: match.teams.away.name },
+      competitor: [
+        { "@type": "SportsTeam", name: match.teams.home.name },
+        { "@type": "SportsTeam", name: match.teams.away.name },
+      ],
+      performer: [
+        { "@type": "SportsTeam", name: match.teams.home.name },
+        { "@type": "SportsTeam", name: match.teams.away.name },
+      ],
+    }),
+    location: {
+      "@type": "VirtualLocation",
+      url: matchUrl,
+      name: "Live Score online broadcast",
+    },
+    organizer: {
+      "@type": "Organization",
+      name: "Live Score",
+      url: BASE_URL,
+    },
+    offers: {
+      "@type": "Offer",
+      url: matchUrl,
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      validFrom: new Date(match.date).toISOString(),
+    },
+    isAccessibleForFree: true,
+    image: match.poster
+      ? [match.poster]
+      : [`${BASE_URL}/opengraph-image`],
+  };
+
+  const broadcastEventJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BroadcastEvent",
+    name: match.title,
+    startDate: new Date(match.date).toISOString(),
+    isLiveBroadcast: isLive,
+    url: matchUrl,
+    videoFormat: "HD",
+    inLanguage: "en",
     ...(match.teams && {
       homeTeam: { "@type": "SportsTeam", name: match.teams.home.name },
       awayTeam: { "@type": "SportsTeam", name: match.teams.away.name },
     }),
-    location: { "@type": "VirtualLocation", url: matchUrl },
-    organizer: {
-      "@type": "Organization",
-      name: "SportVibeHub",
-      url: BASE_URL,
-    },
-    isAccessibleForFree: true,
+  };
+
+  const videoObjectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: `${match.title} — Live Stream`,
+    description: `Free HD live stream of ${match.title}. Watch online with real-time live scores.`,
+    thumbnailUrl: [match.poster ?? `${BASE_URL}/opengraph-image`],
+    uploadDate: new Date(match.date).toISOString(),
+    contentUrl: matchUrl,
+    embedUrl: matchUrl,
+    ...(isLive && {
+      publication: {
+        "@type": "BroadcastEvent",
+        isLiveBroadcast: true,
+        startDate: new Date(match.date).toISOString(),
+      },
+    }),
   };
 
   const sportSlug = match.category;
@@ -163,7 +261,19 @@ export default async function MatchPage({ params, searchParams }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
+          __html: JSON.stringify(broadcastEventJsonLd),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbJsonLd),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(videoObjectJsonLd),
         }}
       />
 
@@ -241,6 +351,34 @@ export default async function MatchPage({ params, searchParams }: Props) {
               </div>
             </section>
           )}
+
+          <section className="border-t border-line pt-8">
+            <SectionBar
+              code="X"
+              eyebrow="Other channels · Live scores"
+              title="Explore more sports"
+            />
+            <nav
+              aria-label="Other sports channels"
+              className="flex flex-wrap gap-2"
+            >
+              {CROSS_CHANNELS.filter((c) => c.slug !== sportSlug).map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/sports/${c.slug}`}
+                  className="mono rounded-tag border border-line-2 bg-panel px-3 py-1.5 text-[11px] uppercase tracking-[0.22em] text-fg-dim transition hover:border-neon hover:text-neon"
+                >
+                  {c.label}
+                </Link>
+              ))}
+            </nav>
+            <p className="mt-6 max-w-2xl text-sm leading-relaxed text-fg-mid">
+              Watch {headline} live free on Live Score (livesofascore.online).
+              Follow real-time {sportName.toLowerCase()} live scores, browse
+              other {sportName.toLowerCase()} fixtures, and jump to any other
+              sport channel above for more free HD live streams.
+            </p>
+          </section>
         </div>
 
         <aside className="space-y-6">

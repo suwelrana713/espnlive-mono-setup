@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Not Found // SportVibeHub",
+  title: "Not Found // Live Score",
   description: "That channel is dark.",
   robots: { index: false, follow: true },
 };

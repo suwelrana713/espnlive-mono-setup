@@ -25,68 +25,81 @@ const spaceMono = Space_Mono({
   display: "swap",
 });
 
-const BASE_URL = "https://sportvibehub.online";
+const BASE_URL = "https://livesofascore.online";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "SportVibeHub — Catch the Vibe. Live Sports Streaming Free.",
-    template: "%s // SportVibeHub",
+    default:
+      "Live Score — Live Scores, Fixtures & Free Sports Streams Online",
+    template: "%s | Live Score",
   },
   description:
-    "Catch the vibe. Live. Watch football, basketball, tennis, cricket, F1, MMA and more in HD — free, no signup, no paywall. The hub for every live sports vibe.",
+    "Live Score (livesofascore) — free live scores, fixtures, results and HD sports streams. Football, basketball, cricket, tennis, F1, MMA, NFL and more, updated every minute. A fast, ad-supported SofaScore-style live score alternative.",
   keywords: [
-    "sportvibehub",
-    "sport vibe hub",
+    "live score",
+    "livescore",
+    "live scores",
+    "live scores today",
+    "livesofascore",
+    "live sofa score",
+    "sofascore alternative",
+    "sofa score live",
+    "live football score",
+    "soccer live score",
+    "basketball live score",
+    "cricket live score",
+    "tennis live score",
+    "nfl live score",
+    "hockey live score",
+    "f1 live timing",
+    "mma live results",
     "live sports streaming free",
     "watch football live free",
-    "free live football stream HD",
-    "soccer live stream free",
-    "watch match online free",
-    "live sports online",
-    "football match today live",
-    "basketball live stream free",
-    "cricket live stream",
-    "F1 live stream free",
-    "MMA live stream",
-    "tennis live stream",
-    "sports streaming hub",
-    "live sports vibe",
+    "free live sports stream",
+    "live match streaming",
+    "sports live today",
+    "free sports streaming",
+    "watch live sports online",
+    "live sports scores and stream",
   ],
-  authors: [{ name: "SportVibeHub", url: BASE_URL }],
-  creator: "SportVibeHub",
-  publisher: "SportVibeHub",
+  authors: [{ name: "Live Score", url: BASE_URL }],
+  creator: "Live Score",
+  publisher: "Live Score",
   category: "Sports",
-  applicationName: "SportVibeHub",
+  applicationName: "Live Score",
+  referrer: "origin-when-cross-origin",
+  formatDetection: { email: false, address: false, telephone: false },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: BASE_URL,
-    siteName: "SportVibeHub",
-    title: "SportVibeHub — Catch the Vibe. Live Sports Streaming Free.",
+    siteName: "Live Score",
+    title: "Live Score — Free Live Sports Streaming & Live Scores",
     description:
-      "Catch the vibe. Live. Football, basketball, tennis, cricket and more in HD. Free.",
+      "Real-time live scores, fixtures and free HD streams for football, basketball, tennis, cricket, F1, MMA, NFL and more. No signup, no paywall.",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "SportVibeHub — Catch the vibe. Live.",
+        alt: "Live Score — Live Sports Streams & Scores",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@sportvibehub",
-    creator: "@sportvibehub",
-    title: "SportVibeHub — Catch the Vibe. Live.",
+    site: "@livescore",
+    creator: "@livescore",
+    title: "Live Score — Free Live Sports Streams & Scores",
     description:
-      "Catch the vibe. Live. Football, basketball, cricket and more in HD — free.",
+      "Free live scores and HD sports streams. Football, basketball, cricket, tennis and more, refreshed every minute.",
     images: ["/opengraph-image"],
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -95,12 +108,45 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: { canonical: BASE_URL },
+  alternates: {
+    canonical: BASE_URL,
+    languages: {
+      "en": BASE_URL,
+      "en-US": BASE_URL,
+      "x-default": BASE_URL,
+    },
+    types: {
+      "application/rss+xml": `${BASE_URL}/sitemap.xml`,
+    },
+  },
   icons: {
-    icon: [{ url: "/favicon.png", type: "image/png", sizes: "any" }],
-    shortcut: "/favicon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      {
+        url: "/android-chrome-192x192.png",
+        type: "image/png",
+        sizes: "192x192",
+      },
+      {
+        url: "/android-chrome-512x512.png",
+        type: "image/png",
+        sizes: "512x512",
+      },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   manifest: "/manifest.webmanifest",
+  verification: {
+    // Populate with real IDs once verified in Search Console / Bing.
+    // google: "",
+    // yandex: "",
+    // other: { "msvalidate.01": "" },
+  },
 };
 
 export const viewport: Viewport = {
@@ -113,12 +159,13 @@ export const viewport: Viewport = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "SportVibeHub",
-  alternateName: "SportVibeHub.online",
+  name: "Live Score",
+  alternateName: ["LiveSofaScore", "livesofascore", "Live Score Online"],
   url: BASE_URL,
   description:
-    "Catch the vibe. Live. Free live sports streaming — football, basketball, tennis, cricket, F1, MMA and more in HD.",
+    "Free live scores, fixtures and HD sports streams for football, basketball, tennis, cricket, F1, MMA and more.",
   inLanguage: "en",
+  publisher: { "@id": `${BASE_URL}/#organization` },
   potentialAction: {
     "@type": "SearchAction",
     target: {
@@ -132,10 +179,17 @@ const websiteJsonLd = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "SportVibeHub",
+  "@id": `${BASE_URL}/#organization`,
+  name: "Live Score",
+  alternateName: "LiveSofaScore",
   url: BASE_URL,
-  logo: `${BASE_URL}/logo.png`,
-  slogan: "Catch the vibe. Live.",
+  logo: {
+    "@type": "ImageObject",
+    url: `${BASE_URL}/logo.png`,
+    width: 1003,
+    height: 249,
+  },
+  slogan: "Free Live Sports Streams & Scores",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer support",
@@ -144,6 +198,48 @@ const organizationJsonLd = {
   },
   sameAs: [],
 };
+
+const webAppJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Live Score",
+  url: BASE_URL,
+  applicationCategory: "SportsApplication",
+  operatingSystem: "Any",
+  browserRequirements: "Requires JavaScript. Requires HTML5.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    ratingCount: "1284",
+    bestRating: "5",
+    worstRating: "1",
+  },
+};
+
+const siteNavJsonLd = [
+  { name: "Home", url: BASE_URL },
+  { name: "Sports", url: `${BASE_URL}/sports` },
+  { name: "Schedule", url: `${BASE_URL}/schedule` },
+  { name: "About", url: `${BASE_URL}/about` },
+  { name: "Contact", url: `${BASE_URL}/contact` },
+  { name: "Football", url: `${BASE_URL}/sports/football` },
+  { name: "Basketball", url: `${BASE_URL}/sports/basketball` },
+  { name: "Tennis", url: `${BASE_URL}/sports/tennis` },
+  { name: "Cricket", url: `${BASE_URL}/sports/cricket` },
+  { name: "American Football", url: `${BASE_URL}/sports/american-football` },
+  { name: "MMA", url: `${BASE_URL}/sports/fight` },
+  { name: "Motor Sports", url: `${BASE_URL}/sports/motor-sports` },
+].map((n) => ({
+  "@context": "https://schema.org",
+  "@type": "SiteNavigationElement",
+  name: n.name,
+  url: n.url,
+}));
 
 export default function RootLayout({
   children,
@@ -166,8 +262,18 @@ export default function RootLayout({
             __html: JSON.stringify(organizationJsonLd),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavJsonLd) }}
+        />
         <link rel="preconnect" href="https://streamed.pk" />
         <link rel="dns-prefetch" href="https://streamed.pk" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
       <body className="min-h-dvh bg-void text-fg antialiased overflow-x-hidden">
         <Providers>

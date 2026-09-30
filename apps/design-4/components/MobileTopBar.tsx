@@ -7,12 +7,12 @@ export function MobileTopBar() {
     <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-line bg-panel/90 px-4 backdrop-blur-md lg:hidden">
       <Link
         href="/"
-        aria-label="SportVibeHub home"
+        aria-label="Live Score — home"
         className="flex items-center"
       >
         <Image
           src="/logo.png"
-          alt="SportVibeHub"
+          alt="Live Score — Free Live Sports Streaming"
           width={170}
           height={40}
           priority

@@ -1,8 +1,12 @@
 import type { MetadataRoute } from "next";
-import { getLiveMatches, getPopularMatches } from "@/lib/api";
+import {
+  getLiveMatches,
+  getPopularMatches,
+  getMatchesBySport,
+} from "@/lib/api";
 import { getMatchStatus } from "@/lib/types";
 
-const BASE_URL = "https://sportvibehub.online";
+const BASE_URL = "https://livesofascore.online";
 
 const SPORTS = [
   "football",
@@ -39,15 +43,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  const [liveResult, popularResult] = await Promise.allSettled([
+  const [liveResult, popularResult, ...sportResults] = await Promise.allSettled([
     getLiveMatches(),
     getPopularMatches(),
+    ...SPORTS.map((s) => getMatchesBySport(s)),
   ]);
 
   const live = liveResult.status === "fulfilled" ? liveResult.value : [];
-  const popular = popularResult.status === "fulfilled" ? popularResult.value : [];
+  const popular =
+    popularResult.status === "fulfilled" ? popularResult.value : [];
+  const perSport = sportResults.flatMap((r) =>
+    r.status === "fulfilled" ? r.value : [],
+  );
+
   const dedupedMatches = [
-    ...new Map([...live, ...popular].map((m) => [m.id, m])).values(),
+    ...new Map(
+      [...live, ...popular, ...perSport].map((m) => [m.id, m]),
+    ).values(),
   ].filter((m) => getMatchStatus(m.date) !== "finished");
 
   const matchRoutes: MetadataRoute.Sitemap = dedupedMatches.map((match) => ({

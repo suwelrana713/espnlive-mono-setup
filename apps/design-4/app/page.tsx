@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import {
@@ -21,7 +22,43 @@ import { EmptyBlock } from "@/components/EmptyBlock";
 import { ResponsiveAd, AdBanner } from "@/ads/AdBanner";
 import { AdNativeBanner } from "@/ads/AdNativeBanner";
 
+const BASE_URL = "https://livesofascore.online";
+
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Live Score — Live Scores, Fixtures & Free Sports Streams",
+  description:
+    "Real-time live scores and free HD live sports streams. Football, basketball, cricket, tennis, F1, MMA, NFL and more — refreshed every minute. A fast, free SofaScore-style alternative.",
+  alternates: { canonical: BASE_URL },
+  openGraph: {
+    type: "website",
+    url: BASE_URL,
+    siteName: "Live Score",
+    title: "Live Score — Free Live Sports Streams & Live Scores",
+    description:
+      "Free live scores and HD live streams for football, basketball, cricket, tennis, F1, MMA, NFL and more.",
+  },
+};
+
+const HOME_FAQS = [
+  {
+    q: "What is Live Score?",
+    a: "Live Score (livesofascore.online) is a free live sports score and streaming index. Watch live football, basketball, cricket, tennis, F1, MMA and more in HD, and follow real-time live scores updated every minute.",
+  },
+  {
+    q: "Is Live Score a SofaScore alternative?",
+    a: "Yes. Live Score offers a fast, ad-supported alternative to SofaScore with live scores, fixtures, and, in addition, free HD live streams for major sports.",
+  },
+  {
+    q: "How much does it cost to watch live sports on Live Score?",
+    a: "Nothing. All live scores and live streams are free. No signup, no subscription, no credit card.",
+  },
+  {
+    q: "Which sports have live scores and streams?",
+    a: "Football (soccer), basketball, tennis, cricket, American football (NFL), ice hockey, baseball, motor sports (F1, MotoGP), MMA/UFC, rugby, golf and darts.",
+  },
+];
 
 async function Feature() {
   const [live, popular] = await Promise.allSettled([
@@ -124,21 +161,53 @@ async function ChannelDeck() {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const liveForSchema = await getLiveMatches().catch(() => []);
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Live sports events — on air now",
+    itemListElement: liveForSchema.slice(0, 10).map((m, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${BASE_URL}/match/${encodeURIComponent(m.id)}`,
+      name: m.title,
+    })),
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: HOME_FAQS.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <div className="px-5 py-8 sm:px-8 lg:px-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-10 flex flex-col gap-4 border-b border-line pb-8 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="mono text-[10px] uppercase tracking-[0.28em] text-neon">
             // Broadcast center · Live feed
           </p>
           <h1 className="display mt-3 text-2xl sm:text-3xl md:text-[44px] font-bold leading-[0.98] text-fg sm:text-[68px]">
-            Every match, one signal.
+            Live Scores &amp; Free Live Sports Streams.
           </h1>
         </div>
         <p className="max-w-sm text-sm text-fg-mid lg:text-right">
-          Fifteen sports, multiple mirrors per fixture. Free, HD, no
-          registration. Refreshed every minute.
+          Live scores, fixtures and free HD streams for football, basketball,
+          cricket, tennis, F1, MMA and more — multiple mirrors per match,
+          refreshed every minute.
         </p>
       </div>
 
@@ -223,6 +292,58 @@ export default function HomePage() {
       </section>
 
       <AdNativeBanner />
+
+      <section className="mt-16 grid gap-10 border-t border-line pt-14 lg:grid-cols-[1.4fr_1fr]">
+        <div className="space-y-6 text-fg-mid">
+          <h2 className="display text-2xl font-bold text-fg sm:text-3xl">
+            Live scores and free live sports streams, all in one place
+          </h2>
+          <p className="text-sm leading-relaxed">
+            Live Score (livesofascore.online) is a free live sports index built
+            for fans who want <strong>real-time live scores</strong> and
+            <strong> HD live streams</strong> in the same place. Follow live
+            football scores, NBA scores, cricket scores, tennis scores, NFL
+            scores, F1 timing, MMA/UFC results and more — updated every minute
+            from the source.
+          </p>
+          <p className="text-sm leading-relaxed">
+            Looking for a <strong>SofaScore alternative</strong>? Live Score
+            covers the same fixtures and results — with the added bonus of free
+            HD live streams for every major sport. No signup, no paywall, no
+            credit card. Pick a match, choose a mirror, watch.
+          </p>
+          <h3 className="display text-xl font-bold text-fg">
+            Sports covered with live scores &amp; streams
+          </h3>
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-1 text-sm sm:grid-cols-3">
+            <li>Football / soccer live score</li>
+            <li>Basketball / NBA live score</li>
+            <li>Cricket live score</li>
+            <li>Tennis live score</li>
+            <li>American football / NFL</li>
+            <li>Ice hockey / NHL</li>
+            <li>Baseball / MLB</li>
+            <li>Motor sports — F1, MotoGP</li>
+            <li>MMA / UFC live results</li>
+            <li>Rugby live score</li>
+            <li>Golf leaderboard</li>
+            <li>Darts live score</li>
+          </ul>
+        </div>
+        <div className="rounded-panel border border-line bg-panel p-6">
+          <h2 className="display text-xl font-bold text-fg">FAQ</h2>
+          <dl className="mt-4 space-y-4">
+            {HOME_FAQS.map((f) => (
+              <div key={f.q}>
+                <dt className="display text-[15px] font-bold text-fg">{f.q}</dt>
+                <dd className="mt-1 text-sm leading-relaxed text-fg-mid">
+                  {f.a}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
     </div>
   );
 }

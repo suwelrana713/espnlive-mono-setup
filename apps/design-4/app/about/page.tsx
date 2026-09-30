@@ -5,32 +5,32 @@ import { SectionBar } from "@/components/SectionBar";
 import { ResponsiveAd } from "@/ads/AdBanner";
 
 export const metadata: Metadata = {
-  title: "About SportVibeHub — Free Sports Streaming Platform",
+  title: "About Live Score — Free Sports Streaming Platform",
   description:
-    "SportVibeHub is a free sports streaming aggregator. Watch live football, basketball, tennis, cricket, and more from multiple HD stream sources worldwide.",
-  alternates: { canonical: "https://sportvibehub.online/about" },
+    "Live Score is a free sports streaming aggregator. Watch live football, basketball, tennis, cricket, and more from multiple HD stream sources worldwide.",
+  alternates: { canonical: "https://livesofascore.online/about" },
   openGraph: {
     type: "website",
-    url: "https://sportvibehub.online/about",
-    title: "About SportVibeHub",
+    url: "https://livesofascore.online/about",
+    title: "About Live Score",
     description:
       "Free live sports streaming aggregator — football, basketball, cricket and more in HD.",
-    siteName: "SportVibeHub",
+    siteName: "Live Score",
   },
 };
 
 const FAQS = [
   {
-    q: "Is SportVibeHub really free?",
-    a: "Yes. Every stream is free. No signup, no paywall, no subscription. Ads keep the platform running.",
+    q: "Is Live Score really free?",
+    a: "Yes. Every live sports stream and every live score is free. No signup, no paywall, no subscription. Ads keep the platform running.",
   },
   {
-    q: "Do I need to create an account?",
-    a: "No account required. Open a match, pick a mirror, hit play.",
+    q: "Do I need to create an account to watch live sports?",
+    a: "No account required. Open a match, pick a mirror, hit play. Live scores update in real time without login.",
   },
   {
-    q: "Does SportVibeHub host the streams?",
-    a: "No. SportVibeHub is an index. All video is served by independent third-party providers. We link to public embed URLs.",
+    q: "Does Live Score host the streams?",
+    a: "No. Live Score is an index. All video is served by independent third-party providers — we link to public embed URLs and aggregate live score data.",
   },
   {
     q: "Which sports can I watch live?",
@@ -116,8 +116,8 @@ export default function AboutPage() {
         </div>
         <div className="flex flex-col justify-end">
           <p className="display text-2xl font-bold leading-[1.25] text-fg">
-            SportVibeHub is a free, ads-supported broadcast index. We link to the
-            wire. We don’t host it.
+            Live Score is a free, ads-supported live sports streaming and live
+            score index. We link to the wire. We don’t host it.
           </p>
           <p className="mt-4 text-fg-mid">
             Fast, quiet, no registration. Refreshed every minute from the
@@ -203,7 +203,7 @@ export default function AboutPage() {
             title="No hosting, no storage"
           />
           <p className="text-fg-mid">
-            SportVibeHub does not host any video content. All streams linked are
+            Live Score does not host any video content. All streams linked are
             provided by independent third parties. For official broadcasts,
             please use licensed streaming services. This site is for
             entertainment purposes only.

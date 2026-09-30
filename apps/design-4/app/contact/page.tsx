@@ -4,16 +4,16 @@ import { SectionBar } from "@/components/SectionBar";
 import { ResponsiveAd } from "@/ads/AdBanner";
 
 export const metadata: Metadata = {
-  title: "Contact SportVibeHub — Get in Touch",
+  title: "Contact Live Score — Get in Touch",
   description:
-    "Contact SportVibeHub for support, DMCA notices, stream issues, or general inquiries. We respond within 24 hours.",
-  alternates: { canonical: "https://sportvibehub.online/contact" },
+    "Contact Live Score for support, DMCA notices, stream issues, or general inquiries. We respond within 24 hours.",
+  alternates: { canonical: "https://livesofascore.online/contact" },
   openGraph: {
     type: "website",
-    url: "https://sportvibehub.online/contact",
-    title: "Contact SportVibeHub",
-    description: "Get in touch with SportVibeHub for support or inquiries.",
-    siteName: "SportVibeHub",
+    url: "https://livesofascore.online/contact",
+    title: "Contact Live Score",
+    description: "Get in touch with Live Score for support or inquiries.",
+    siteName: "Live Score",
   },
 };
 
@@ -111,13 +111,13 @@ export default function ContactPage() {
           <input
             type="hidden"
             name="_subject"
-            value="SportVibeHub — Contact Form"
+            value="Live Score — Contact Form"
           />
           <input type="hidden" name="_captcha" value="false" />
           <input
             type="hidden"
             name="_next"
-            value="https://sportvibehub.online/contact?sent=true"
+            value="https://livesofascore.online/contact?sent=true"
           />
 
           <div className="space-y-5">

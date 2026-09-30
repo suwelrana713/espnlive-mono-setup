@@ -5,10 +5,31 @@ import type { Match } from "@/lib/types";
 import { ResponsiveAd } from "@/ads/AdBanner";
 import { AdNativeBanner } from "@/ads/AdNativeBanner";
 
+const BASE_URL = "https://livesofascore.online";
+
 export const metadata: Metadata = {
-  title: "Schedule",
+  title: "Live Sports Schedule — Fixtures, Kick-off Times & Live Streams",
   description:
-    "Full sports match schedule. See upcoming and live events by date.",
+    "Full live sports schedule with kick-off times, live scores and free HD streams. Football, basketball, cricket, tennis, F1, MMA, NFL and more — sorted by date.",
+  keywords: [
+    "sports schedule",
+    "live sports fixtures",
+    "today's matches",
+    "tomorrow's fixtures",
+    "live football schedule",
+    "nba schedule",
+    "cricket schedule",
+    "live sports today",
+  ],
+  alternates: { canonical: `${BASE_URL}/schedule` },
+  openGraph: {
+    type: "website",
+    url: `${BASE_URL}/schedule`,
+    siteName: "Live Score",
+    title: "Live Sports Schedule — Fixtures & Free Streams",
+    description:
+      "See every upcoming and live match, with free HD streams and real-time live scores.",
+  },
 };
 
 export const revalidate = 60;

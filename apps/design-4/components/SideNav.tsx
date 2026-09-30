@@ -39,12 +39,12 @@ export function SideNav() {
       <div className="flex flex-col gap-8">
         <Link
           href="/"
-          aria-label="SportVibeHub home"
+          aria-label="Live Score — home"
           className="flex items-center"
         >
           <Image
             src="/logo.png"
-            alt="SportVibeHub"
+            alt="Live Score — Free Live Sports Streaming"
             width={210}
             height={50}
             priority

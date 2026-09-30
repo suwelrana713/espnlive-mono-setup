@@ -17,32 +17,191 @@ interface Props {
   params: Promise<{ sport: string }>;
 }
 
-const BASE_URL = "https://sportvibehub.online";
+const BASE_URL = "https://livesofascore.online";
+
+const SPORT_COPY: Record<
+  string,
+  { display: string; kw: string[]; intro: string }
+> = {
+  football: {
+    display: "Football",
+    kw: [
+      "football live score",
+      "soccer live score",
+      "live football streaming free",
+      "watch football live",
+      "premier league live score",
+      "la liga live score",
+      "champions league live stream",
+    ],
+    intro:
+      "Live football scores, fixtures and free HD streams — Premier League, La Liga, Serie A, Bundesliga, Ligue 1, Champions League, Europa League, World Cup qualifiers and more.",
+  },
+  basketball: {
+    display: "Basketball",
+    kw: [
+      "basketball live score",
+      "nba live score",
+      "nba live stream free",
+      "watch basketball live",
+      "euroleague live score",
+    ],
+    intro:
+      "Live basketball scores and free HD streams — NBA, EuroLeague, NCAA, WNBA and international games.",
+  },
+  "american-football": {
+    display: "American Football",
+    kw: [
+      "nfl live score",
+      "nfl live stream free",
+      "college football live stream",
+      "american football live",
+    ],
+    intro:
+      "Live NFL scores, fixtures and free HD streams — regular season, playoffs, Super Bowl and college football.",
+  },
+  hockey: {
+    display: "Hockey",
+    kw: [
+      "nhl live score",
+      "hockey live stream free",
+      "ice hockey live score",
+      "khl live stream",
+    ],
+    intro:
+      "Live ice hockey scores and free HD streams — NHL, KHL, SHL, Champions Hockey League and internationals.",
+  },
+  baseball: {
+    display: "Baseball",
+    kw: [
+      "mlb live score",
+      "mlb live stream free",
+      "baseball live score",
+      "nippon baseball live",
+    ],
+    intro:
+      "Live MLB scores and free HD streams — regular season, postseason, World Series and international leagues.",
+  },
+  "motor-sports": {
+    display: "Motor Sports",
+    kw: [
+      "f1 live timing",
+      "formula 1 live stream free",
+      "motogp live stream",
+      "nascar live stream",
+      "motorsport live",
+    ],
+    intro:
+      "Live motor sports timing and free HD streams — Formula 1, MotoGP, NASCAR, WRC and Formula E.",
+  },
+  fight: {
+    display: "MMA / Boxing",
+    kw: [
+      "ufc live stream free",
+      "mma live results",
+      "boxing live stream",
+      "ppv live stream free",
+    ],
+    intro:
+      "Live MMA and boxing results with free HD streams — UFC, Bellator, ONE Championship, PFL and major boxing PPVs.",
+  },
+  tennis: {
+    display: "Tennis",
+    kw: [
+      "tennis live score",
+      "atp live score",
+      "wta live score",
+      "grand slam live stream",
+      "wimbledon live stream free",
+    ],
+    intro:
+      "Live tennis scores and free HD streams — ATP, WTA, Grand Slams (Australian Open, Roland Garros, Wimbledon, US Open) and Davis Cup.",
+  },
+  cricket: {
+    display: "Cricket",
+    kw: [
+      "cricket live score",
+      "ipl live score",
+      "psl live stream free",
+      "world cup cricket live",
+      "test match live score",
+    ],
+    intro:
+      "Live cricket scores and free HD streams — IPL, PSL, Big Bash, ICC World Cup, T20 internationals and Test matches.",
+  },
+  rugby: {
+    display: "Rugby",
+    kw: [
+      "rugby live score",
+      "six nations live stream",
+      "rugby world cup live",
+      "premiership rugby stream",
+    ],
+    intro:
+      "Live rugby scores and free HD streams — Six Nations, Rugby Championship, Rugby World Cup, Premiership and Super Rugby.",
+  },
+  golf: {
+    display: "Golf",
+    kw: [
+      "golf live leaderboard",
+      "pga live stream free",
+      "the masters live stream",
+      "ryder cup live",
+    ],
+    intro:
+      "Live golf leaderboards and free HD streams — PGA Tour, DP World Tour, LPGA, majors and the Ryder Cup.",
+  },
+  darts: {
+    display: "Darts",
+    kw: [
+      "darts live score",
+      "pdc live stream free",
+      "world darts championship live",
+    ],
+    intro:
+      "Live darts scores and free HD streams — PDC World Championship, Premier League Darts, Grand Slam and majors.",
+  },
+};
+
+function sportCopy(sport: string) {
+  const fallbackName = sport
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+  return (
+    SPORT_COPY[sport] ?? {
+      display: fallbackName,
+      kw: [
+        `${fallbackName.toLowerCase()} live score`,
+        `${fallbackName.toLowerCase()} live stream free`,
+      ],
+      intro: `Live ${fallbackName.toLowerCase()} scores and free HD streams — every fixture, one signal.`,
+    }
+  );
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { sport } = await params;
-  const name = sport
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+  const copy = sportCopy(sport);
   const sportUrl = `${BASE_URL}/sports/${sport}`;
-  const title = `Watch Live ${name} Streams Online Free`;
-  const description = `Watch live ${name.toLowerCase()} matches and streams online free in HD. Live scores, upcoming fixtures, and multiple stream sources.`;
+  const title = `${copy.display} Live Scores & Free Live Streams`;
+  const description = `${copy.intro} Live scores, fixtures and multiple free HD stream sources — refreshed every minute.`;
   return {
     title,
     description,
+    keywords: copy.kw,
     alternates: { canonical: sportUrl },
     openGraph: {
       type: "website",
       url: sportUrl,
       title,
       description,
-      siteName: "SportVibeHub",
+      siteName: "Live Score",
       images: [
         {
           url: "/opengraph-image",
           width: 1200,
           height: 630,
-          alt: `Live ${name} Streams`,
+          alt: `Live ${copy.display} Streams & Scores`,
         },
       ],
     },
@@ -152,9 +311,9 @@ export default async function SportPage({ params }: Props) {
   const sports = await getSports().catch(() => []);
   const sportData = sports.find((s) => s.id === sport);
   if (!sportData && !sports.length) notFound();
-  const name =
-    sportData?.name ??
-    sport.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const copy = sportCopy(sport);
+  const name = sportData?.name ?? copy.display;
+  const sportUrl = `${BASE_URL}/sports/${sport}`;
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -167,11 +326,47 @@ export default async function SportPage({ params }: Props) {
         name: "Sports",
         item: `${BASE_URL}/sports`,
       },
+      { "@type": "ListItem", position: 3, name, item: sportUrl },
+    ],
+  };
+
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: `${name} — Live Scores & Free Streams`,
+    url: sportUrl,
+    description: copy.intro,
+    isPartOf: { "@type": "WebSite", url: BASE_URL, name: "Live Score" },
+    about: { "@type": "Thing", name },
+  };
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
       {
-        "@type": "ListItem",
-        position: 3,
-        name,
-        item: `${BASE_URL}/sports/${sport}`,
+        "@type": "Question",
+        name: `Where can I watch ${name.toLowerCase()} live streams for free?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `On Live Score (livesofascore.online). Every ${name.toLowerCase()} match on this page has multiple free HD mirror streams — no signup required.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `How often are ${name.toLowerCase()} live scores updated?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `Live ${name.toLowerCase()} scores and fixtures on Live Score are refreshed every minute from the source.`,
+        },
+      },
+      {
+        "@type": "Question",
+        name: `Is a Live Score account required to watch ${name.toLowerCase()}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "No. All live streams and live scores are free and open — no signup, no subscription, no credit card.",
+        },
       },
     ],
   };
@@ -181,6 +376,14 @@ export default async function SportPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <div className="border-b border-line pb-8">
         <Link
@@ -196,13 +399,10 @@ export default async function SportPage({ params }: Props) {
               // Channel · {sport}
             </p>
             <h1 className="display mt-3 text-3xl sm:text-4xl md:text-[52px] font-bold leading-[0.95] text-fg sm:text-[80px]">
-              {name}
+              {name} Live Scores &amp; Free Streams
             </h1>
           </div>
-          <p className="max-w-sm text-fg-mid lg:text-right">
-            Live and scheduled {name.toLowerCase()} broadcasts — every mirror,
-            one signal.
-          </p>
+          <p className="max-w-sm text-fg-mid lg:text-right">{copy.intro}</p>
         </div>
       </div>
 
@@ -217,6 +417,18 @@ export default async function SportPage({ params }: Props) {
       <div className="mt-14">
         <AdNativeBanner />
       </div>
+
+      <section className="mt-14 border-t border-line pt-10">
+        <h2 className="display text-2xl font-bold text-fg">
+          About {name.toLowerCase()} on Live Score
+        </h2>
+        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-fg-mid">
+          {copy.intro} Every fixture links to multiple mirror streams so at
+          least one feed is always available. Live {name.toLowerCase()} scores
+          are updated every minute from the source — a fast SofaScore-style
+          alternative with the added bonus of free HD live streams.
+        </p>
+      </section>
     </div>
   );
 }

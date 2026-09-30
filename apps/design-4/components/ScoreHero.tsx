@@ -162,7 +162,7 @@ function TeamBlock({
       <span className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-tag border border-line-2 bg-panel-2">
         <Image
           src={getBadgeUrl(team.badge)}
-          alt={team.name}
+          alt={`${team.name} team badge`}
           fill
           sizes="64px"
           className="object-contain p-2"

@@ -30,13 +30,15 @@ export function MatchTile({ match, index = 0, variant = "grid" }: MatchTileProps
     >
       <Link
         href={`/match/${match.id}?cat=${match.category}`}
+        aria-label={`Watch ${match.teams ? `${match.teams.home.name} vs ${match.teams.away.name}` : match.title} — free live ${category} stream & score`}
+        title={`${match.teams ? `${match.teams.home.name} vs ${match.teams.away.name}` : match.title} live stream`}
         className="scanline-on-hover group relative flex h-full flex-col overflow-hidden rounded-panel border border-line bg-panel transition-all hover:border-neon"
       >
         <div className="relative aspect-[16/10] overflow-hidden bg-panel-2">
           {match.poster ? (
             <Image
               src={getPosterUrl(match.poster)}
-              alt={match.title}
+              alt={`${match.title} — live ${category} stream poster`}
               fill
               sizes="(max-width: 640px) 100vw, 50vw"
               className="object-cover opacity-70 transition group-hover:opacity-100 group-hover:scale-[1.02]"
@@ -117,7 +119,7 @@ function TeamBadge({ src, name }: { src: string; name: string }) {
     <span className="relative inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-tag border border-line-2 bg-panel-2">
       <Image
         src={getBadgeUrl(src)}
-        alt={name}
+        alt={`${name} team badge`}
         fill
         sizes="32px"
         className="object-contain p-1"
@@ -141,6 +143,7 @@ function MatchListRow({ match, index }: { match: Match; index: number }) {
     >
       <Link
         href={`/match/${match.id}?cat=${match.category}`}
+        aria-label={`${match.teams ? `${match.teams.home.name} vs ${match.teams.away.name}` : match.title} — free live stream & score`}
         className="group flex items-center gap-4 border-b border-line px-4 py-3 transition-colors hover:bg-panel"
       >
         <div className="mono flex w-14 shrink-0 flex-col text-[11px] tabular-nums text-fg-mid">

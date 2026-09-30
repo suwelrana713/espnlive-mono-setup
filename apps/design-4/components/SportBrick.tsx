@@ -56,6 +56,8 @@ export function SportBrick({ sport, matchCount, index = 0 }: SportBrickProps) {
     >
       <Link
         href={`/sports/${sport.id}`}
+        aria-label={`${sport.name} — live scores & free live streams`}
+        title={`${sport.name} live scores and free streams`}
         className="scanline-on-hover group relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-panel border border-line bg-panel p-5 transition-all hover:border-neon"
       >
         <div className="flex items-center justify-between">

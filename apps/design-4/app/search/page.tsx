@@ -3,8 +3,11 @@ import { SearchClient } from "./SearchClient";
 import { ResponsiveAd } from "@/ads/AdBanner";
 
 export const metadata: Metadata = {
-  title: "Search",
-  description: "Search for matches, teams, and sports.",
+  title: "Search Live Matches, Teams & Sports",
+  description:
+    "Search live sports matches, teams and channels on Live Score.",
+  robots: { index: false, follow: true },
+  alternates: { canonical: "https://livesofascore.online/search" },
 };
 
 interface Props {
